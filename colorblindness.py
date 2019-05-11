@@ -120,6 +120,8 @@ def main():
 
     image2.show()
     # 생성된 색약 이미지를 띄워줌
+    image2.save('./sample_output/new_colorblindness_sample.jpg')
+    # 생성된 색약 이미지 저장
 
 if __name__ == '__main__':
     main()
