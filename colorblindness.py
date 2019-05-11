@@ -16,49 +16,63 @@ TOTAL_CIRCLES = 1500
 
 color = lambda c: ((c >> 16) & 255, (c >> 8) & 255, c & 255)
 
-COLORS_ON = [
+COLORS_ON = [   # 문자 색
     color(0xF9BB82), color(0xEBA170), color(0xFCCD84)
 ]
-COLORS_OFF = [
+COLORS_OFF = [  # 배경 색
     color(0x9CA594), color(0xACB4A5), color(0xBBB964),
     color(0xD7DAAA), color(0xE5D57D), color(0xD1D6AF)
 ]
 
 
 def generate_circle(image_width, image_height, min_diameter, max_diameter):
+    # 원을 생성 하는 함수, 반환값 : Circle
     radius = random.triangular(min_diameter, max_diameter,
                                max_diameter * 0.8 + min_diameter * 0.2) / 2
+    # 원의 직경은 삼각분포를 이루며 최대 직경값에 치우침
 
     angle = random.uniform(0, math.pi * 2)
+    # 랜덤 각
     distance_from_center = random.uniform(0, image_width * 0.48 - radius)
+    # 랜덤 거리
     x = image_width  * 0.5 + math.cos(angle) * distance_from_center
     y = image_height * 0.5 + math.sin(angle) * distance_from_center
+    # 중앙으로 부터 랜덤한 위치에 랜덤한 직경의 원을 생성
 
     return x, y, radius
 
 
-def overlaps_motive(image, (x, y, r)):
+def overlaps_motive(image, x_y_r):
+    # 원의 겹침을 확인하는 함수, 반환값 : boolean
+    x, y, r = x_y_r
     points_x = [x, x, x, x-r, x+r, x-r*0.93, x-r*0.93, x+r*0.93, x+r*0.93]
     points_y = [y, y-r, y+r, y, y, y+r*0.93, y-r*0.93, y+r*0.93, y-r*0.93]
 
     for xy in zip(points_x, points_y):
         if image.getpixel(xy)[:3] != BACKGROUND:
             return True
+        # 배열[행:열] 앞의 예는 3열을 고정시킨것, getpixel() 해당 점의 RGB 값 반환
 
     return False
 
 
-def circle_intersection((x1, y1, r1), (x2, y2, r2)):
+def circle_intersection(x1_y1_r1, x2_y2_r2):
+    # 두원의 겹침 조사 함수 겹치지 않을 때 true 반환, 반환값 : boolean
+    x1, y1, r1 = x1_y1_r1
+    x2, y2, r2 = x2_y2_r2
     return (x2 - x1)**2 + (y2 - y1)**2 < (r2 + r1)**2
 
 
-def circle_draw(draw_image, image, (x, y, r)):
+def circle_draw(draw_image, image, x_y_r):
+    # 색칠 함수
+    x, y, r = x_y_r
     fill_colors = COLORS_ON if overlaps_motive(image, (x, y, r)) else COLORS_OFF
     fill_color = random.choice(fill_colors)
 
     draw_image.ellipse((x - r, y - r, x + r, y + r),
                        fill=fill_color,
                        outline=fill_color)
+    # 타원 생성 메소드
 
 
 def main():
@@ -77,14 +91,16 @@ def main():
     circle_draw(draw_image, image, circle)
 
     try:
-        for i in xrange(TOTAL_CIRCLES):
+        for i in range(TOTAL_CIRCLES):
             tries = 0
             if IMPORTED_SCIPY:
                 kdtree = KDTree([(x, y) for (x, y, _) in circles])
                 while True:
                     circle = generate_circle(width, height, min_diameter, max_diameter)
                     elements, indexes = kdtree.query([(circle[0], circle[1])], k=12)
+                    # 거리 상한이 12인 인접한 원들을 찾아 내어 비교
                     for element, index in zip(elements[0], indexes[0]):
+                        # 무한댓값 없고 원이 겹치지 않으면 루프 탈출
                         if not np.isinf(element) and circle_intersection(circle, circles[index]):
                             break
                     else:
@@ -95,7 +111,7 @@ def main():
                     tries += 1
                     circle = generate_circle(width, height, min_diameter, max_diameter)
 
-            print '{}/{} {}'.format(i, TOTAL_CIRCLES, tries)
+            print('{}/{} {}'.format(i, TOTAL_CIRCLES, tries))
 
             circles.append(circle)
             circle_draw(draw_image, image, circle)
@@ -103,6 +119,7 @@ def main():
         pass
 
     image2.show()
+    # 생성된 색약 이미지를 띄워줌
 
 if __name__ == '__main__':
     main()
