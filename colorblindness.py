@@ -24,6 +24,9 @@ COLORS_OFF = [  # 배경 색
     color(0xD7DAAA), color(0xE5D57D), color(0xD1D6AF)
 ]
 
+COLORS_TMP = [   # 문자 + 범위 색(11표)
+    color(0xF9BB82), color(0xEBA170), color(0xFCCD84)
+]
 
 def generate_circle(image_width, image_height, min_diameter, max_diameter):
     # 원의 위치를 결정 하는 함수, 반환값 : circle(x좌표, y좌표, 반지름)
@@ -72,6 +75,43 @@ def circle_draw(draw_image, image, x_y_r):
                        fill=fill_color,
                        outline=fill_color)
     # 원 생성 메소드
+
+def circle_draw_target_11th(draw_image, image, x_y_r):
+    # 제 11표 그려주는 함수
+    x, y, r = x_y_r
+    fill_colors = COLORS_ON if overlaps_motive(image, (x, y, r)) else COLORS_OFF
+    #수정 필요
+    fill_color = random.choice(fill_colors)
+    draw_image.ellipse((x - r, y - r, x + r, y + r),
+                       fill=fill_color,
+                       outline=fill_color)
+    # 원 생성 메소드
+
+def check_point(draw_image, image, x_y_r):
+    # 제 11표를 위한 보조 함수, 해당 원이 두 직선 사이에 있는지 확인, 직선 사이이면 True 반환값 : bool
+    x, y, r = x_y_r
+    a = random.uniform(0, math.inf)
+    b = random.uniform(0, math.inf)
+    m = image.width * 0.5
+    k = a * (x - m) + m
+    t = b * x
+    cross_point_x = m * (a - 1) / (a - b)
+    if cross_point_x > image.width:
+        if t < y < k:
+            return True
+        else:
+            return False
+    else:
+        if x < cross_point_x:
+            if t < y < k:
+                return True
+            else:
+                return False
+        else:
+            if k < y < t:
+                return True
+            else:
+                return False
 
 
 def main():
