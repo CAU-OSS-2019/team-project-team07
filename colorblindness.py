@@ -28,6 +28,7 @@ COLORS_TMP = [   # 문자 + 범위 임시색(11표)
     color(0x000000)
 ]
 
+
 def generate_circle(image_width, image_height, min_diameter, max_diameter):
     # 원의 위치를 결정 하는 함수, 반환값 : circle(x좌표, y좌표, 반지름)
     radius = random.triangular(min_diameter, max_diameter,
@@ -76,6 +77,7 @@ def circle_draw_target_1st(draw_image, image, x_y_r):
                        outline=fill_color)
     # 원 생성 메소드
 
+
 def circle_draw_target_11th(draw_image, image, x_y_r):
     # 제 11표 그려주는 함수
     x, y, r = x_y_r
@@ -93,11 +95,14 @@ def circle_draw_target_11th(draw_image, image, x_y_r):
                        outline=fill_color)
     # 원 생성 메소드
 
+
+a = random.uniform(- 5, 5)  # 랜덤 기울기 값 설정 (11표) - 세부조정 필요
+b = random.uniform(0, 3)    # 랜덤 기울기 값 설정 (11표) - 세부조정 필요
+
+
 def check_point(image, x_y_r):
     # 제 11표를 위한 보조 함수, 해당 원이 두 직선 사이에 있는지 확인, 직선 사이이면 True 반환값 : bool
     x, y, r = x_y_r
-    a = random.uniform(0, math.inf)
-    b = random.uniform(0, math.inf)
     m = image.width * 0.5
     k = a * (x - m) + m
     t = b * x
@@ -119,6 +124,7 @@ def check_point(image, x_y_r):
             else:
                 return False
 
+
 def circle_draw(draw_image, image, x_y_r, target_num):
     if target_num == '1':
         circle_draw_target_1st(draw_image, image, x_y_r)
@@ -127,6 +133,7 @@ def circle_draw(draw_image, image, x_y_r, target_num):
     else:
         print('지원하지 않는 기능입니다')
         sys.exit()
+
 
 def main():
     image = Image.open(sys.argv[1])
@@ -176,6 +183,7 @@ def main():
     # 생성된 색약 이미지를 띄워줌
     image2.save('./sample_output/new_colorblindness_sample.jpg')
     # 생성된 색약 이미지 저장
+
 
 if __name__ == '__main__':
     main()
