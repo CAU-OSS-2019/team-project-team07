@@ -26,7 +26,7 @@ COLORS_OFF = [  # 배경 색
 
 
 def generate_circle(image_width, image_height, min_diameter, max_diameter):
-    # 원을 생성 하는 함수, 반환값 : Circle
+    # 원의 위치를 결정 하는 함수, 반환값 : circle(x좌표, y좌표, 반지름)
     radius = random.triangular(min_diameter, max_diameter,
                                max_diameter * 0.8 + min_diameter * 0.2) / 2
     # 원의 직경은 삼각분포를 이루며 최대 직경값에 치우침
@@ -37,7 +37,7 @@ def generate_circle(image_width, image_height, min_diameter, max_diameter):
     # 랜덤 거리
     x = image_width  * 0.5 + math.cos(angle) * distance_from_center
     y = image_height * 0.5 + math.sin(angle) * distance_from_center
-    # 중앙으로 부터 랜덤한 위치에 랜덤한 직경의 원을 생성
+    # 중앙으로 부터 랜덤한 위치에 랜덤한 직경의 원의 중심을 지정
 
     return x, y, radius
 
@@ -64,15 +64,14 @@ def circle_intersection(x1_y1_r1, x2_y2_r2):
 
 
 def circle_draw(draw_image, image, x_y_r):
-    # 색칠 함수
+    # 이미지에 원을 그려주는 함수
     x, y, r = x_y_r
     fill_colors = COLORS_ON if overlaps_motive(image, (x, y, r)) else COLORS_OFF
     fill_color = random.choice(fill_colors)
-
     draw_image.ellipse((x - r, y - r, x + r, y + r),
                        fill=fill_color,
                        outline=fill_color)
-    # 타원 생성 메소드
+    # 원 생성 메소드
 
 
 def main():
