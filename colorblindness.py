@@ -24,9 +24,13 @@ COLORS_OFF = [  # 배경 색
     color(0xD7DAAA), color(0xE5D57D), color(0xD1D6AF)
 ]
 
+COLORS_TMP = [   # 문자 + 범위 임시색(11표)
+    color(0x000000)
+]
+
 
 def generate_circle(image_width, image_height, min_diameter, max_diameter):
-    # 원을 생성 하는 함수, 반환값 : Circle
+    # 원의 위치를 결정 하는 함수, 반환값 : circle(x좌표, y좌표, 반지름)
     radius = random.triangular(min_diameter, max_diameter,
                                max_diameter * 0.8 + min_diameter * 0.2) / 2
     # 원의 직경은 삼각분포를 이루며 최대 직경값에 치우침
@@ -37,7 +41,7 @@ def generate_circle(image_width, image_height, min_diameter, max_diameter):
     # 랜덤 거리
     x = image_width  * 0.5 + math.cos(angle) * distance_from_center
     y = image_height * 0.5 + math.sin(angle) * distance_from_center
-    # 중앙으로 부터 랜덤한 위치에 랜덤한 직경의 원을 생성
+    # 중앙으로 부터 랜덤한 위치에 랜덤한 직경의 원의 중심을 지정
 
     return x, y, radius
 
@@ -63,16 +67,72 @@ def circle_intersection(x1_y1_r1, x2_y2_r2):
     return (x2 - x1)**2 + (y2 - y1)**2 < (r2 + r1)**2
 
 
-def circle_draw(draw_image, image, x_y_r):
-    # 색칠 함수
+def circle_draw_target_1st(draw_image, image, x_y_r):
+    # 이미지에 원을 그려주는 함수
     x, y, r = x_y_r
     fill_colors = COLORS_ON if overlaps_motive(image, (x, y, r)) else COLORS_OFF
     fill_color = random.choice(fill_colors)
-
     draw_image.ellipse((x - r, y - r, x + r, y + r),
                        fill=fill_color,
                        outline=fill_color)
-    # 타원 생성 메소드
+    # 원 생성 메소드
+
+
+def circle_draw_target_11th(draw_image, image, x_y_r):
+    # 제 11표 그려주는 함수
+    x, y, r = x_y_r
+    if overlaps_motive(image, (x, y, r)):
+        if check_point(image, (x, y, r)):
+            fill_colors = COLORS_TMP
+        else:
+            fill_colors = COLORS_ON
+    else:
+        fill_colors = COLORS_OFF
+
+    fill_color = random.choice(fill_colors)
+    draw_image.ellipse((x - r, y - r, x + r, y + r),
+                       fill=fill_color,
+                       outline=fill_color)
+    # 원 생성 메소드
+
+
+a = random.uniform(- 5, 5)  # 랜덤 기울기 값 설정 (11표) - 세부조정 필요
+b = random.uniform(0, 3)    # 랜덤 기울기 값 설정 (11표) - 세부조정 필요
+
+
+def check_point(image, x_y_r):
+    # 제 11표를 위한 보조 함수, 해당 원이 두 직선 사이에 있는지 확인, 직선 사이이면 True 반환값 : bool
+    x, y, r = x_y_r
+    m = image.width * 0.5
+    k = a * (x - m) + m
+    t = b * x
+    cross_point_x = m * (a - 1) / (a - b)
+    if cross_point_x > image.width:
+        if t < y < k:
+            return True
+        else:
+            return False
+    else:
+        if x < cross_point_x:
+            if t < y < k:
+                return True
+            else:
+                return False
+        else:
+            if k < y < t:
+                return True
+            else:
+                return False
+
+
+def circle_draw(draw_image, image, x_y_r, target_num):
+    if target_num == '1':
+        circle_draw_target_1st(draw_image, image, x_y_r)
+    elif target_num == '11':
+        circle_draw_target_11th(draw_image, image, x_y_r)
+    else:
+        print('지원하지 않는 기능입니다')
+        sys.exit()
 
 
 def main():
@@ -84,11 +144,12 @@ def main():
 
     min_diameter = (width + height) / 200
     max_diameter = (width + height) / 75
+    target_num = input()
 
     circle = generate_circle(width, height, min_diameter, max_diameter)
     circles = [circle]
 
-    circle_draw(draw_image, image, circle)
+    circle_draw(draw_image, image, circle, target_num)
 
     try:
         for i in range(TOTAL_CIRCLES):
@@ -114,7 +175,7 @@ def main():
             print('{}/{} {}'.format(i, TOTAL_CIRCLES, tries))
 
             circles.append(circle)
-            circle_draw(draw_image, image, circle)
+            circle_draw(draw_image, image, circle, target_num)
     except (KeyboardInterrupt, SystemExit):
         pass
 
@@ -122,6 +183,7 @@ def main():
     # 생성된 색약 이미지를 띄워줌
     image2.save('./sample_output/new_colorblindness_sample.jpg')
     # 생성된 색약 이미지 저장
+
 
 if __name__ == '__main__':
     main()
