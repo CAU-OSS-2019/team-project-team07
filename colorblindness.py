@@ -3,6 +3,7 @@ import random
 import sys
 
 from PIL import Image, ImageDraw
+from colorset import *
 
 try:
     from scipy.spatial import cKDTree as KDTree
@@ -13,21 +14,6 @@ except ImportError:
 
 BACKGROUND = (255, 255, 255)
 TOTAL_CIRCLES = 1500
-
-color = lambda c: ((c >> 16) & 255, (c >> 8) & 255, c & 255)
-
-COLORS_ON = [   # 문자 색
-    color(0xF9BB82), color(0xEBA170), color(0xFCCD84)
-]
-COLORS_OFF = [  # 배경 색
-    color(0x9CA594), color(0xACB4A5), color(0xBBB964),
-    color(0xD7DAAA), color(0xE5D57D), color(0xD1D6AF)
-]
-
-COLORS_TMP = [   # 문자 + 범위 임시색(11표)
-    color(0x000000)
-]
-
 
 def generate_circle(image_width, image_height, min_diameter, max_diameter):
     # 원의 위치를 결정 하는 함수, 반환값 : circle(x좌표, y좌표, 반지름)
