@@ -46,21 +46,14 @@ def circle_draw(draw_image, image, x_y_r, target_num):
     global first_flag
     global over_image
     if target_num == '1':
-        circle_draw_target_1st(draw_image, image, x_y_r)
-    elif target_num == '2':
+        circle_draw_type_1st(draw_image, image, x_y_r)
+    elif target_num == '2' or '4' or '11':
         if first_flag:
             print('input overlap image file name : ')
             overlap_image = input()
             over_image = Image.open('./sample_input/' + overlap_image + '.png')
             first_flag = False
-        circle_draw_target_2nd(draw_image, image, over_image, x_y_r)
-    elif target_num == '11':
-        if first_flag:
-            print('input overlap image file name : ')
-            overlap_image = input()
-            over_image = Image.open('./sample_input/' + overlap_image + '.png')
-            first_flag = False
-        circle_draw_target_11th(draw_image, image, over_image, x_y_r)
+        circle_draw_type_2nd(draw_image, image, over_image, x_y_r, int(target_num))
     else:
         print('지원하지 않는 기능입니다')
         sys.exit()
