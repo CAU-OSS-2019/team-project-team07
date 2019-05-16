@@ -46,23 +46,48 @@ def circle_draw(draw_image, image, x_y_r, target_num):
     global first_flag
     global over_image
     if target_num == '1':
-        circle_draw_target_1st(draw_image, image, x_y_r)
-    elif target_num == '2':
+        circle_draw_type_1st(draw_image, image, x_y_r)
+    elif target_num == '2' or '4' or '11':
         if first_flag:
             print('input overlap image file name : ')
             overlap_image = input()
             over_image = Image.open('./sample_input/' + overlap_image + '.png')
             first_flag = False
-        circle_draw_target_2nd(draw_image, image, over_image, x_y_r)
-    elif target_num == '11':
+        circle_draw_type_2nd(draw_image, image, over_image, x_y_r, int(target_num))
+    elif target_num == '3' or '5':
         if first_flag:
-            print('input overlap image file name : ')
+            print('input second image file name : ')
             overlap_image = input()
             over_image = Image.open('./sample_input/' + overlap_image + '.png')
             first_flag = False
-        circle_draw_target_11th(draw_image, image, over_image, x_y_r)
+        circle_draw_type_3rd(draw_image, image, over_image, x_y_r, int(target_num))
+    elif target_num == '6' or '8' or '12':
+        circle_draw_type_4th(draw_image, image, over_image, x_y_r, int(target_num))
+    elif target_num == '7':
+        if first_flag:
+            print('input second image file name : ')
+            overlap_image = input()
+            over_image = Image.open('./sample_input/' + overlap_image + '.png')
+            first_flag = False
+        circle_draw_type_5th(draw_image, image, over_image, x_y_r)
+    elif target_num == '9':
+        circle_draw_type_6th(draw_image, image, over_image, x_y_r)
+    elif target_num == '10' or '13' or '14' or '15' or '16' or '17':
+        if first_flag:
+            print('input second image file name : ')
+            overlap_image = input()
+            over_image = Image.open('./sample_input/' + overlap_image + '.png')
+            first_flag = False
+        circle_draw_type_7th(draw_image, image, over_image, x_y_r, int(target_num))
+    elif target_num == '19' or '20' or '21':
+        if first_flag:
+            print('input second image file name : ')
+            overlap_image = input()
+            over_image = Image.open('./sample_input/' + overlap_image + '.png')
+            first_flag = False
+        circle_draw_type_8th(draw_image, image, over_image, x_y_r, int(target_num))
     else:
-        print('지원하지 않는 기능입니다')
+        print('1~21 사이의 숫자를 입력해주세요')
         sys.exit()
 
 
