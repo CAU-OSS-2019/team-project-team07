@@ -18,6 +18,9 @@ team-project-team07 created by GitHub Classroom
 | 과정 | 이미지 |
 |---|---|
 | 1. 이미지 입력 | 
+| 2. 이미지 윤곽선 추출 |
+| 3. 지표의 타입 지정 |
+| 4. Generating |
 
 ## Manual
 ### Before Start (Packages)
@@ -33,7 +36,7 @@ if you have this error >> ModuleNotFoundError: No module named 'PIL'
 Generate a Image.
 ```
   python colorblindness.py imagename target_num image image(Optional)
-'''
+```
 
 ## License
 GNU General Public License v3.0
