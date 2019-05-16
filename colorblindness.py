@@ -12,7 +12,7 @@ except ImportError:
     IMPORTED_SCIPY = False
 
 BACKGROUND = (255, 255, 255)
-TOTAL_CIRCLES = 510
+TOTAL_CIRCLES = 410
 
 color = lambda c: ((c >> 16) & 255, (c >> 8) & 255, c & 255)
 
@@ -154,7 +154,10 @@ def main():
             if IMPORTED_SCIPY:
                 kdtree = KDTree([(x, y) for (x, y, _) in circles])
                 while True:
-                    circle = generate_circle(width, height, min_diameter, max_diameter)
+                    if i< TOTAL_CIRCLES/4:
+                        circle = generate_circle(width, height, max_diameter, max_diameter)
+                    else:
+                        circle = generate_circle(width, height, min_diameter, max_diameter)
                     elements, indexes = kdtree.query([(circle[0], circle[1])], k=12)
                     # 거리 상한이 12인 인접한 원들을 찾아 내어 비교
                     for element, index in zip(elements[0], indexes[0]):
