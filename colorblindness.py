@@ -54,6 +54,8 @@ def circle_draw(draw_image, image, x_y_r, target_num):
             over_image = Image.open('./sample_input/' + overlap_image + '.png')
             first_flag = False
         circle_draw_type_2nd(draw_image, image, over_image, x_y_r, int(target_num))
+    elif target_num == '6' or '8' or '12':
+        circle_draw_type_4th(draw_image, image, over_image, x_y_r, int(target_num))
     else:
         print('지원하지 않는 기능입니다')
         sys.exit()

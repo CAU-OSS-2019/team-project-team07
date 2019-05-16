@@ -27,11 +27,10 @@ def circle_draw_type_1st(draw_image, image, x_y_r):
     draw_image.ellipse((x - r, y - r, x + r, y + r),
                        fill=fill_color,
                        outline=fill_color)
-    # 원 생성 메소드
 
 
 def circle_draw_type_2nd(draw_image, image, image2, x_y_r, target_num):
-    # 제 2표, 4표 11표 함수
+    # 제 2표, 4표, 11표 함수
     x, y, r = x_y_r
     if overlaps_motive(image, (x, y, r)):
         if overlaps_motive(image2, (x, y, r)):
@@ -47,4 +46,14 @@ def circle_draw_type_2nd(draw_image, image, image2, x_y_r, target_num):
     draw_image.ellipse((x - r, y - r, x + r, y + r),
                        fill=fill_color,
                        outline=fill_color)
-    # 원 생성 메소드
+
+
+def circle_draw_type_4th(draw_image, image, x_y_r, target_num):
+    # 제 6표, 8표, 12표 함수
+    x, y, r = x_y_r
+    fill_colors = COLORS_ON[target_num] if overlaps_motive(image, (x, y, r)) else random.choice(COLORS_OFF[target_num])
+    # 비율 조정 필요
+    fill_color = random.choice(fill_colors)
+    draw_image.ellipse((x - r, y - r, x + r, y + r),
+                       fill=fill_color,
+                       outline=fill_color)
