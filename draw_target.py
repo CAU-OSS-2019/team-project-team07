@@ -74,9 +74,13 @@ def circle_draw_type_6th(draw_image, image, x_y_r):
     x, y, r = x_y_r
 
 
-def circle_draw_type_7th(draw_image, image, x_y_r, target_num):
+def circle_draw_type_7th(draw_image, image, image2, x_y_r, target_num):
     # 제 10표, 13표, 14표, 15표, 16표, 17표, 18표 함수
     x, y, r = x_y_r
+    image = image.resize(image.size * 0.7)
+    image2 = image2.resize(image2.size * 0.7)
+    tmp_image = image.new('RGB', image.size * 1.5, BACKGROUND)
+    tmp_image.paste(image2, box=(0, image.size * 0.5))
 
 
 def circle_draw_type_8th(draw_image, image, x_y_r, target_num):
