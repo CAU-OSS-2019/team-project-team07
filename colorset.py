@@ -22,9 +22,13 @@ COLORS_OFF_1 = [
 ]
 
 # number 2
-COLORS_ON_2 = [
-    color(0x9E635B), color(0xC5817E), color(0xEAA095),  # pink
-    color(0x9A7C56), color(0xC99F6D), color(0xEAB77E),  # brown
+COLORS_ON_2_1 = [
+    color(0x9E635B), color(0xC5817E), color(0xEAA095)  # pink
+]
+COLORS_ON_2_2 = [
+    color(0x9A7C56), color(0xC99F6D), color(0xEAB77E)  # brown
+]
+COLORS_ON_2_3 = [
     color(0x62937E), color(0x78AF9C), color(0x97C4B0)  # green
 ]
 COLORS_OFF_2 = [
@@ -32,9 +36,13 @@ COLORS_OFF_2 = [
 ]
 
 # number 3
-COLORS_ON_3 = [
-    color(0x9E635B), color(0xC5817E), color(0xEAA095),  # pink
-    color(0x9A7C56), color(0xC99F6D), color(0xEAB77E),  # brown
+COLORS_ON_3_1 = [
+    color(0x9E635B), color(0xC5817E), color(0xEAA095)  # pink
+]
+COLORS_ON_3_2 = [
+    color(0x9A7C56), color(0xC99F6D), color(0xEAB77E)  # brown
+]
+COLORS_ON_3_3 = [
     color(0x62937E), color(0x78AF9C), color(0x97C4B0)  # green
 ]
 COLORS_OFF_3 = [
@@ -42,9 +50,13 @@ COLORS_OFF_3 = [
 ]
 
 # number 4
-COLORS_ON_4 = [
-    color(0x418377), color(0x5FA398), color(0x86B1A7),  # cyan
-    color(0x7E8B5F), color(0x899668), color(0xA0AA6D),  # green
+COLORS_ON_4_1 = [
+    color(0x418377), color(0x5FA398), color(0x86B1A7)  # cyan
+]
+COLORS_ON_4_2 = [
+    color(0x7E8B5F), color(0x899668), color(0xA0AA6D)  # green
+]
+COLORS_ON_4_3 = [
     color(0xA26962), color(0xC0908E), color(0xE0A3A0)  # pink
 ]
 COLORS_OFF_4 = [
@@ -52,8 +64,10 @@ COLORS_OFF_4 = [
 ]
 
 # number 5
-COLORS_ON_5 = [
-    color(0x418377), color(0x5FA398), color(0x86B1A7),  # cyan
+COLORS_ON_5_1 = [
+    color(0x418377), color(0x5FA398), color(0x86B1A7)  # cyan
+]
+COLORS_ON_5_2 = [
     color(0x7E8B5F), color(0x899668), color(0xA0AA6D)  # green
 ]
 COLORS_OFF_5 = [
@@ -64,8 +78,10 @@ COLORS_OFF_5 = [
 COLORS_ON_6 = [
     color(0x8A6C46), color(0xB29261), color(0xCCA36B)  # brown
 ]
-COLORS_OFF_6 = [
-    color(0x60703F), color(0x6F7F41), color(0x8DA253),  # green
+COLORS_OFF_6_1 = [
+    color(0x60703F), color(0x6F7F41), color(0x8DA253)  # green
+]
+COLORS_OFF_6_2 = [
     color(0x418377), color(0x5FA398), color(0x86B1A7)  # cyan
 ]
 
@@ -73,8 +89,10 @@ COLORS_OFF_6 = [
 COLORS_ON_7 = [
     color(0x8A6C46), color(0xB29261), color(0xCCA36B)  # brown
 ]
-COLORS_OFF_7 = [
-    color(0x60703F), color(0x6F7F41), color(0x8DA253),  # green
+COLORS_OFF_7_1 = [
+    color(0x60703F), color(0x6F7F41), color(0x8DA253)  # green
+]
+COLORS_OFF_7_2 = [
     color(0x418377), color(0x5FA398), color(0x86B1A7)  # cyan
 ]
 
@@ -82,8 +100,10 @@ COLORS_OFF_7 = [
 COLORS_ON_8 = [
     color(0x7E8B5F), color(0x899668), color(0xA0AA6D)  # green
 ]
-COLORS_OFF_8 = [
-    color(0x8A6C46), color(0xB29261), color(0xCCA36B),  # brown
+COLORS_OFF_8_1 = [
+    color(0x8A6C46), color(0xB29261), color(0xCCA36B)  # brown
+]
+COLORS_OFF_8_2 = [
     color(0x9E635B), color(0xC5817E), color(0xEAA095)  # pink
 ]
 
@@ -107,9 +127,13 @@ COLORS_OFF_10 = [
 ]
 
 # number 11
-COLORS_ON_11 = [
-    color(0x418377), color(0x5FA398), color(0x86B1A7),  # cyan
-    color(0x7E8B5F), color(0x899668), color(0xA0AA6D),  # green
+COLORS_ON_11_1 = [
+    color(0x418377), color(0x5FA398), color(0x86B1A7)  # cyan
+]
+COLORS_ON_11_2 = [
+    color(0x7E8B5F), color(0x899668), color(0xA0AA6D)  # green
+]
+COLORS_ON_11_3 = [
     color(0x9E635B), color(0xC5817E), color(0xEAA095)  # pink
 ]
 COLORS_OFF_11 = [
@@ -120,8 +144,10 @@ COLORS_OFF_11 = [
 COLORS_ON_12 = [
     color(0x8A6C46), color(0xB29261), color(0xCCA36B)  # brown
 ]
-COLORS_OFF_12 = [
-    color(0x62937E), color(0x78AF9C), color(0x97C4B0),  # green
+COLORS_OFF_12_1 = [
+    color(0x62937E), color(0x78AF9C), color(0x97C4B0)  # green
+]
+COLORS_OFF_12_2 = [
     color(0x418377), color(0x5FA398), color(0x86B1A7)  # cyan
 ]
 
