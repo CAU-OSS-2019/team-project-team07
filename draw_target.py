@@ -48,6 +48,11 @@ def circle_draw_type_2nd(draw_image, image, image2, x_y_r, target_num):
                        outline=fill_color)
 
 
+def circle_draw_type_3rd(draw_image, image, x_y_r, target_num):
+    # 제 3표, 5표
+    x, y, r = x_y_r
+
+
 def circle_draw_type_4th(draw_image, image, x_y_r, target_num):
     # 제 6표, 8표, 12표 함수
     x, y, r = x_y_r
@@ -57,3 +62,24 @@ def circle_draw_type_4th(draw_image, image, x_y_r, target_num):
     draw_image.ellipse((x - r, y - r, x + r, y + r),
                        fill=fill_color,
                        outline=fill_color)
+
+
+def circle_draw_type_5th(draw_image, image, x_y_r):
+    # 제 7표 함수
+    x, y, r = x_y_r
+
+
+def circle_draw_type_6th(draw_image, image, x_y_r):
+    # 제 9표 함수
+    x, y, r = x_y_r
+
+
+def circle_draw_type_7th(draw_image, image, x_y_r, target_num):
+    # 제 10표, 13표, 14표, 15표, 16표, 17표, 18표 함수
+    x, y, r = x_y_r
+
+
+def circle_draw_type_8th(draw_image, image, x_y_r, target_num):
+    # 제 19표, 20표, 21표 함수
+    x, y, r = x_y_r
+
