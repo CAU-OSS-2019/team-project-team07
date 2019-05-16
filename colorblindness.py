@@ -15,6 +15,7 @@ except ImportError:
 BACKGROUND = (255, 255, 255)
 TOTAL_CIRCLES = 1500
 
+
 def generate_circle(image_width, image_height, min_diameter, max_diameter):
     # 원의 위치를 결정 하는 함수, 반환값 : circle(x좌표, y좌표, 반지름)
     radius = random.triangular(min_diameter, max_diameter,
@@ -64,16 +65,18 @@ def circle_draw_target_1st(draw_image, image, x_y_r):
     # 원 생성 메소드
 
 
-def circle_draw_target_11th(draw_image, image, x_y_r):
+def circle_draw_target_11th(draw_image, image, image2, x_y_r):
     # 제 11표 그려주는 함수
     x, y, r = x_y_r
     if overlaps_motive(image, (x, y, r)):
-        if check_point(image, (x, y, r)):
-            fill_colors = COLORS_TMP
+        if overlaps_motive(image2, (x, y, r)):
+            fill_colors = COLORS_ON_11_1
         else:
-            fill_colors = COLORS_ON
+            fill_colors = COLORS_ON_11_2
+    elif overlaps_motive(image2, (x, y, r)):
+        fill_colors = COLORS_ON_11_3
     else:
-        fill_colors = COLORS_OFF
+        fill_colors = COLORS_OFF_11
 
     fill_color = random.choice(fill_colors)
     draw_image.ellipse((x - r, y - r, x + r, y + r),
@@ -82,40 +85,21 @@ def circle_draw_target_11th(draw_image, image, x_y_r):
     # 원 생성 메소드
 
 
-a = random.uniform(- 5, 5)  # 랜덤 기울기 값 설정 (11표) - 세부조정 필요
-b = random.uniform(0, 3)    # 랜덤 기울기 값 설정 (11표) - 세부조정 필요
-
-
-def check_point(image, x_y_r):
-    # 제 11표를 위한 보조 함수, 해당 원이 두 직선 사이에 있는지 확인, 직선 사이이면 True 반환값 : bool
-    x, y, r = x_y_r
-    m = image.width * 0.5
-    k = a * (x - m) + m
-    t = b * x
-    cross_point_x = m * (a - 1) / (a - b)
-    if cross_point_x > image.width:
-        if t < y < k:
-            return True
-        else:
-            return False
-    else:
-        if x < cross_point_x:
-            if t < y < k:
-                return True
-            else:
-                return False
-        else:
-            if k < y < t:
-                return True
-            else:
-                return False
+first_flag = True
+over_image = Image
 
 
 def circle_draw(draw_image, image, x_y_r, target_num):
+    global first_flag
+    global over_image
     if target_num == '1':
         circle_draw_target_1st(draw_image, image, x_y_r)
     elif target_num == '11':
-        circle_draw_target_11th(draw_image, image, x_y_r)
+        if first_flag:
+            overlap_image = input()
+            over_image = Image.open('./sample_input/' + overlap_image + '.png')
+            first_flag = False
+        circle_draw_target_11th(draw_image, image, over_image, x_y_r)
     else:
         print('지원하지 않는 기능입니다')
         sys.exit()
