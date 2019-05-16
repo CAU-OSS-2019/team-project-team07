@@ -49,12 +49,14 @@ def circle_draw(draw_image, image, x_y_r, target_num):
         circle_draw_target_1st(draw_image, image, x_y_r)
     elif target_num == '2':
         if first_flag:
+            print('input overlap image file name : ')
             overlap_image = input()
             over_image = Image.open('./sample_input/' + overlap_image + '.png')
             first_flag = False
         circle_draw_target_2nd(draw_image, image, over_image, x_y_r)
     elif target_num == '11':
         if first_flag:
+            print('input overlap image file name : ')
             overlap_image = input()
             over_image = Image.open('./sample_input/' + overlap_image + '.png')
             first_flag = False
@@ -73,6 +75,7 @@ def main():
 
     min_diameter = (width + height) / 110
     max_diameter = (width + height) / 40
+    print('please input target number (1 ~ 21) : ')
     target_num = input()
 
     circle = generate_circle(width, height, min_diameter, max_diameter)
