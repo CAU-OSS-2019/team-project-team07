@@ -57,7 +57,7 @@ def circle_intersection(x1_y1_r1, x2_y2_r2):
 def circle_draw_target_1st(draw_image, image, x_y_r):
     # 이미지에 원을 그려주는 함수
     x, y, r = x_y_r
-    fill_colors = COLORS_ON if overlaps_motive(image, (x, y, r)) else COLORS_OFF
+    fill_colors = COLORS_ON_1 if overlaps_motive(image, (x, y, r)) else COLORS_OFF_1
     fill_color = random.choice(fill_colors)
     draw_image.ellipse((x - r, y - r, x + r, y + r),
                        fill=fill_color,
