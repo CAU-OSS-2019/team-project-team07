@@ -12,7 +12,7 @@ except ImportError:
     IMPORTED_SCIPY = False
 
 BACKGROUND = (255, 255, 255)
-TOTAL_CIRCLES = 1500
+TOTAL_CIRCLES = 510
 
 color = lambda c: ((c >> 16) & 255, (c >> 8) & 255, c & 255)
 
@@ -23,7 +23,6 @@ COLORS_OFF = [  # 배경 색
     color(0x9CA594), color(0xACB4A5), color(0xBBB964),
     color(0xD7DAAA), color(0xE5D57D), color(0xD1D6AF)
 ]
-
 COLORS_TMP = [   # 문자 + 범위 임시색(11표)
     color(0x000000)
 ]
@@ -64,7 +63,7 @@ def circle_intersection(x1_y1_r1, x2_y2_r2):
     # 두원의 겹침 조사 함수 겹치지 않을 때 true 반환, 반환값 : boolean
     x1, y1, r1 = x1_y1_r1
     x2, y2, r2 = x2_y2_r2
-    return (x2 - x1)**2 + (y2 - y1)**2 < (r2 + r1)**2
+    return (x2 - x1)**2 + (y2 - y1)**2 < 1.13*(r2 + r1)**2
 
 
 def circle_draw_target_1st(draw_image, image, x_y_r):
@@ -142,15 +141,13 @@ def main():
 
     width, height = image.size
 
-    min_diameter = (width + height) / 200
-    max_diameter = (width + height) / 75
+    min_diameter = (width + height) / 110
+    max_diameter = (width + height) / 40
     target_num = input()
 
     circle = generate_circle(width, height, min_diameter, max_diameter)
     circles = [circle]
-
     circle_draw(draw_image, image, circle, target_num)
-
     try:
         for i in range(TOTAL_CIRCLES):
             tries = 0
@@ -181,7 +178,7 @@ def main():
 
     image2.show()
     # 생성된 색약 이미지를 띄워줌
-    image2.save('./sample_output/new_colorblindness_sample.jpg')
+    # image2.save('./sample_output/new_colorblindness_sample.jpg')
     # 생성된 색약 이미지 저장
 
 
