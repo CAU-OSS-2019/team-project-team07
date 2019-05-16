@@ -1,3 +1,4 @@
+*.jpg
 
 *.png
 
@@ -6,3 +7,7 @@
 *.iml
 
 *.pyc
+
+sample_output/
+
+sample_Input/

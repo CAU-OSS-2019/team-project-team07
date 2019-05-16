@@ -65,6 +65,26 @@ def circle_draw_target_1st(draw_image, image, x_y_r):
     # 원 생성 메소드
 
 
+def circle_draw_target_2nd(draw_image, image, image2, x_y_r):
+    # 제 2표 그려주는 함수
+    x, y, r = x_y_r
+    if overlaps_motive(image, (x, y, r)):
+        if overlaps_motive(image2, (x, y, r)):
+            fill_colors = COLORS_ON_2_1
+        else:
+            fill_colors = COLORS_ON_2_2
+    elif overlaps_motive(image2, (x, y, r)):
+        fill_colors = COLORS_ON_2_3
+    else:
+        fill_colors = COLORS_OFF_2
+
+    fill_color = random.choice(fill_colors)
+    draw_image.ellipse((x - r, y - r, x + r, y + r),
+                       fill=fill_color,
+                       outline=fill_color)
+    # 원 생성 메소드
+
+
 def circle_draw_target_11th(draw_image, image, image2, x_y_r):
     # 제 11표 그려주는 함수
     x, y, r = x_y_r
@@ -94,6 +114,12 @@ def circle_draw(draw_image, image, x_y_r, target_num):
     global over_image
     if target_num == '1':
         circle_draw_target_1st(draw_image, image, x_y_r)
+    elif target_num == '2':
+        if first_flag:
+            overlap_image = input()
+            over_image = Image.open('./sample_input/' + overlap_image + '.png')
+            first_flag = False
+        circle_draw_target_2nd(draw_image, image, over_image, x_y_r)
     elif target_num == '11':
         if first_flag:
             overlap_image = input()
