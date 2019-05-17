@@ -67,9 +67,25 @@ def circle_draw_type_4th(draw_image, image, x_y_r, target_num):
                        outline=fill_color)
 
 
-def circle_draw_type_5th(draw_image, image, x_y_r):
+def circle_draw_type_5th(draw_image, image, image2, x_y_r):
     # 제 7표 함수
     x, y, r = x_y_r
+    tmp_image = Image.new('RGB', image.size, BACKGROUND)
+    tmp_image2 = Image.new('RGB', image2.size, BACKGROUND)
+    image = image.resize((1400, 1400))
+    image2 = image2.resize((1400, 1400))
+    tmp_image.paste(image, box=(0, 300))
+    tmp_image2.paste(image2, box=(700, 300))
+    # 위의 과정을 한번만 실행 하도록 변경해야 속도가 향상될 것
+    if overlaps_motive(tmp_image, (x, y, r)) or overlaps_motive(tmp_image2, (x, y, r)):
+        fill_colors = COLORS_ON[7]
+    else:
+        fill_colors = COLORS_OFF[7][0] if random.random() < 0.7 else COLORS_OFF[7][1]
+
+    fill_color = random.choice(fill_colors)
+    draw_image.ellipse((x - r, y - r, x + r, y + r),
+                       fill=fill_color,
+                       outline=fill_color)
 
 
 def circle_draw_type_6th(draw_image, image, x_y_r):
