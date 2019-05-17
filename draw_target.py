@@ -119,7 +119,21 @@ def circle_draw_type_7th(draw_image, image, image2, x_y_r, target_num):
                        outline=fill_color)
 
 
-def circle_draw_type_8th(draw_image, image, x_y_r, target_num):
+def circle_draw_type_8th(draw_image, image, image2, x_y_r, target_num):
     # 제 19표, 20표, 21표 함수
     x, y, r = x_y_r
+    if overlaps_motive(image, (x, y, r)):
+        if overlaps_motive(image2, (x, y, r)):
+            fill_colors = COLORS_ON[target_num][0]
+        else:
+            fill_colors = COLORS_ON[target_num][0]
+    elif overlaps_motive(image2, (x, y, r)):
+        fill_colors = COLORS_ON[target_num][1]
+    else:
+        fill_colors = COLORS_OFF[target_num]
+
+    fill_color = random.choice(fill_colors)
+    draw_image.ellipse((x - r, y - r, x + r, y + r),
+                       fill=fill_color,
+                       outline=fill_color)
 
