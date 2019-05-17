@@ -60,7 +60,7 @@ def circle_draw_type_4th(draw_image, image, x_y_r, target_num):
     if overlaps_motive(image, (x, y, r)):
         fill_colors = COLORS_ON[target_num]
     else:
-        fill_colors = COLORS_OFF[target_num][0] if random.random() < 0.8 else COLORS_OFF[target_num][1]
+        fill_colors = COLORS_OFF[target_num][0] if random.random() < 0.7 else COLORS_OFF[target_num][1]
     fill_color = random.choice(fill_colors)
     draw_image.ellipse((x - r, y - r, x + r, y + r),
                        fill=fill_color,
