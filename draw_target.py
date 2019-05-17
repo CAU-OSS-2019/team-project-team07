@@ -1,6 +1,7 @@
 import random
 
 from colorset import *
+from PIL import Image, ImageDraw
 
 BACKGROUND = (255, 255, 255)
 
@@ -77,10 +78,27 @@ def circle_draw_type_6th(draw_image, image, x_y_r):
 def circle_draw_type_7th(draw_image, image, image2, x_y_r, target_num):
     # 제 10표, 13표, 14표, 15표, 16표, 17표, 18표 함수
     x, y, r = x_y_r
-    image = image.resize(image.size * 0.7)
-    image2 = image2.resize(image2.size * 0.7)
-    tmp_image = image.new('RGB', image.size * 1.5, BACKGROUND)
-    tmp_image.paste(image2, box=(0, image.size * 0.5))
+    tmp_image = Image.new('RGB', image.size, BACKGROUND)
+    tmp_image2 = Image.new('RGB', image2.size, BACKGROUND)
+    image = image.resize((1400, 1400))
+    image2 = image2.resize((1400, 1400))
+    tmp_image.paste(image, box=(0, 300))
+    tmp_image2.paste(image2, box=(700, 300))
+    # 위의 과정을 한번만 실행 하도록 변경해야 속도가 향상될 것
+    if overlaps_motive(tmp_image, (x, y, r)):
+        if overlaps_motive(tmp_image2, (x, y, r)):
+            fill_colors = COLORS_OFF[target_num]
+        else:
+            fill_colors = COLORS_ON[target_num][0]
+    elif overlaps_motive(tmp_image2, (x, y, r)):
+        fill_colors = COLORS_ON[target_num][1]
+    else:
+        fill_colors = COLORS_OFF[target_num]
+
+    fill_color = random.choice(fill_colors)
+    draw_image.ellipse((x - r, y - r, x + r, y + r),
+                       fill=fill_color,
+                       outline=fill_color)
 
 
 def circle_draw_type_8th(draw_image, image, x_y_r, target_num):
