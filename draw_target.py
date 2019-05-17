@@ -5,6 +5,10 @@ from PIL import Image, ImageDraw
 
 BACKGROUND = (255, 255, 255)
 
+first_flag = True
+resize_image1 = Image
+resize_image2 = Image
+
 
 def overlaps_motive(image, x_y_r):
     # 원의 겹침을 확인하는 함수, 반환값 : boolean
@@ -70,14 +74,18 @@ def circle_draw_type_4th(draw_image, image, x_y_r, target_num):
 def circle_draw_type_5th(draw_image, image, image2, x_y_r):
     # 제 7표 함수
     x, y, r = x_y_r
-    tmp_image = Image.new('RGB', image.size, BACKGROUND)
-    tmp_image2 = Image.new('RGB', image2.size, BACKGROUND)
-    image = image.resize((1400, 1400))
-    image2 = image2.resize((1400, 1400))
-    tmp_image.paste(image, box=(0, 300))
-    tmp_image2.paste(image2, box=(700, 300))
-    # 위의 과정을 한번만 실행 하도록 변경해야 속도가 향상될 것
-    if overlaps_motive(tmp_image, (x, y, r)) or overlaps_motive(tmp_image2, (x, y, r)):
+    global first_flag
+    global resize_image1
+    global resize_image2
+    if first_flag:
+        resize_image1 = Image.new('RGB', image.size, BACKGROUND)
+        resize_image2 = Image.new('RGB', image2.size, BACKGROUND)
+        image = image.resize((1400, 1400))
+        image2 = image2.resize((1400, 1400))
+        resize_image1.paste(image, box=(0, 300))
+        resize_image2.paste(image2, box=(700, 300))
+        first_flag = False
+    if overlaps_motive(resize_image1, (x, y, r)) or overlaps_motive(resize_image2, (x, y, r)):
         fill_colors = COLORS_ON[7]
     else:
         fill_colors = COLORS_OFF[7][0] if random.random() < 0.7 else COLORS_OFF[7][1]
@@ -96,23 +104,26 @@ def circle_draw_type_6th(draw_image, image, x_y_r):
 def circle_draw_type_7th(draw_image, image, image2, x_y_r, target_num):
     # 제 10표, 13표, 14표, 15표, 16표, 17표, 18표 함수
     x, y, r = x_y_r
-    tmp_image = Image.new('RGB', image.size, BACKGROUND)
-    tmp_image2 = Image.new('RGB', image2.size, BACKGROUND)
-    image = image.resize((1400, 1400))
-    image2 = image2.resize((1400, 1400))
-    tmp_image.paste(image, box=(0, 300))
-    tmp_image2.paste(image2, box=(700, 300))
-    # 위의 과정을 한번만 실행 하도록 변경해야 속도가 향상될 것
-    if overlaps_motive(tmp_image, (x, y, r)):
-        if overlaps_motive(tmp_image2, (x, y, r)):
+    global first_flag
+    global resize_image1
+    global resize_image2
+    if first_flag:
+        resize_image1 = Image.new('RGB', image.size, BACKGROUND)
+        resize_image2 = Image.new('RGB', image2.size, BACKGROUND)
+        image = image.resize((1400, 1400))
+        image2 = image2.resize((1400, 1400))
+        resize_image1.paste(image, box=(0, 300))
+        resize_image2.paste(image2, box=(700, 300))
+        first_flag = False
+    if overlaps_motive(resize_image1, (x, y, r)):
+        if overlaps_motive(resize_image2, (x, y, r)):
             fill_colors = COLORS_OFF[target_num]
         else:
             fill_colors = COLORS_ON[target_num][0]
-    elif overlaps_motive(tmp_image2, (x, y, r)):
+    elif overlaps_motive(resize_image2, (x, y, r)):
         fill_colors = COLORS_ON[target_num][1]
     else:
         fill_colors = COLORS_OFF[target_num]
-
     fill_color = random.choice(fill_colors)
     draw_image.ellipse((x - r, y - r, x + r, y + r),
                        fill=fill_color,
@@ -136,4 +147,3 @@ def circle_draw_type_8th(draw_image, image, image2, x_y_r, target_num):
     draw_image.ellipse((x - r, y - r, x + r, y + r),
                        fill=fill_color,
                        outline=fill_color)
-
