@@ -2,7 +2,6 @@ import sys
 import math
 
 from draw_target import *
-from PIL import Image, ImageDraw
 
 try:
     from scipy.spatial import cKDTree as KDTree
@@ -62,7 +61,7 @@ def circle_draw(draw_image, image, x_y_r, target_num):
             first_flag = False
         circle_draw_type_3rd(draw_image, image, over_image, x_y_r, target_num)
     elif target_num in [6, 8, 12]:
-        circle_draw_type_4th(draw_image, image, over_image, x_y_r, target_num)
+        circle_draw_type_4th(draw_image, image, x_y_r, target_num)
     elif target_num in [7]:
         if first_flag:
             print('input second image file name : ')
