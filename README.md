@@ -36,12 +36,12 @@ team-project-team07 created by GitHub Classroom
 
 ### How to use
 > Generate a Image.
-```
-  python colorblindness.py imagename target_num image image(Optional)
-```
-1. 'imagename' is name of a created image.
-2. You can put 1 to 11 on 'target_num' for indicators.
-3. You have to put a directory of inputed image on 'image'
+>```
+>  python colorblindness.py imagename target_num image image(Optional)
+>```
+>1. 'imagename' is name of a created image.
+>2. You can put 1 to 11 on 'target_num' for indicators.
+>3. You have to put a directory of inputed image on 'image'
 
 ## License
 GNU General Public License v3.0
