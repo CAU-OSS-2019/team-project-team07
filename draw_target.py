@@ -53,7 +53,7 @@ def circle_draw_type_2nd(draw_image, image, image2, x_y_r, target_num):
                        outline=fill_color)
 
 
-def circle_draw_type_3rd(draw_image, image, x_y_r, target_num):
+def circle_draw_type_3rd(draw_image, image, image2, overlap_image, overlap_image2, x_y_r, target_num):
     # 제 3표, 5표
     x, y, r = x_y_r
 
