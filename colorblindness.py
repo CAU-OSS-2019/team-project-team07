@@ -10,7 +10,7 @@ try:
 except ImportError:
     IMPORTED_SCIPY = False
 
-TOTAL_CIRCLES = 410
+TOTAL_CIRCLES = 500
 
 
 def generate_circle(image_width, image_height, min_diameter, max_diameter):
@@ -97,8 +97,8 @@ def main():
 
     width, height = image.size
 
-    min_diameter = (width + height) / 110
-    max_diameter = (width + height) / 40
+    min_diameter = (width + height) / 194
+    max_diameter = (width + height) / 28
     print('please input target number (1 ~ 21) : ')
     target_num = int(input())
 
