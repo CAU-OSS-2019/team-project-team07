@@ -2,7 +2,6 @@ import sys
 import math
 
 from draw_target import *
-from PIL import Image, ImageDraw
 
 try:
     from scipy.spatial import cKDTree as KDTree
@@ -11,7 +10,7 @@ try:
 except ImportError:
     IMPORTED_SCIPY = False
 
-TOTAL_CIRCLES = 410
+TOTAL_CIRCLES = 500
 
 
 def generate_circle(image_width, image_height, min_diameter, max_diameter):
@@ -62,7 +61,7 @@ def circle_draw(draw_image, image, x_y_r, target_num):
             first_flag = False
         circle_draw_type_3rd(draw_image, image, over_image, x_y_r, target_num)
     elif target_num in [6, 8, 12]:
-        circle_draw_type_4th(draw_image, image, over_image, x_y_r, target_num)
+        circle_draw_type_4th(draw_image, image, x_y_r, target_num)
     elif target_num in [7]:
         if first_flag:
             print('input second image file name : ')
@@ -98,8 +97,8 @@ def main():
 
     width, height = image.size
 
-    min_diameter = (width + height) / 110
-    max_diameter = (width + height) / 40
+    min_diameter = (width + height) / 194
+    max_diameter = (width + height) / 28
     print('please input target number (1 ~ 21) : ')
     target_num = int(input())
 
