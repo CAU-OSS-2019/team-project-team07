@@ -2,7 +2,6 @@ import sys
 import math
 
 from draw_target import *
-from PIL import Image, ImageDraw
 
 try:
     from scipy.spatial import cKDTree as KDTree
@@ -11,14 +10,14 @@ try:
 except ImportError:
     IMPORTED_SCIPY = False
 
-TOTAL_CIRCLES = 410
+TOTAL_CIRCLES = 500
 
 
 def generate_circle(image_width, image_height, min_diameter, max_diameter):
     # 원의 위치를 결정 하는 함수, 반환값 : circle(x좌표, y좌표, 반지름)
     radius = random.triangular(min_diameter, max_diameter,
-                               max_diameter * 0.8 + min_diameter * 0.2) / 2
-    # 원의 직경은 삼각분포를 이루며 최대 직경값에 치우침
+                               max_diameter * 0.2 + min_diameter * 0.8) / 2
+    # 원의 직경은 삼각분포를 이루며 최소 직경값에 치우침
 
     angle = random.uniform(0, math.pi * 2)
     # 랜덤 각
@@ -62,7 +61,7 @@ def circle_draw(draw_image, image, x_y_r, target_num):
             first_flag = False
         circle_draw_type_3rd(draw_image, image, over_image, x_y_r, target_num)
     elif target_num in [6, 8, 12]:
-        circle_draw_type_4th(draw_image, image, over_image, x_y_r, target_num)
+        circle_draw_type_4th(draw_image, image, x_y_r, target_num)
     elif target_num in [7]:
         if first_flag:
             print('input second image file name : ')
@@ -91,6 +90,21 @@ def circle_draw(draw_image, image, x_y_r, target_num):
         sys.exit()
 
 
+def bounded_check(image, x_y_r):
+    # 원이 경계선에 걸쳤는지 확인하는 함수, 반환값 : boolean, 걸치지 않을 때 True
+    x, y, r = x_y_r
+    cnt = 0
+    points_x = [x, x, x, x-r, x+r, x-r*0.93, x-r*0.93, x+r*0.93, x+r*0.93]
+    points_y = [y, y-r, y+r, y, y, y+r*0.93, y-r*0.93, y+r*0.93, y-r*0.93]
+
+    for xy in zip(points_x, points_y):
+        if image.getpixel(xy)[:3] != BACKGROUND:
+            cnt += 1
+    if cnt == 0 or cnt == 9:
+        return True
+    return False
+
+
 def main():
     image = Image.open(sys.argv[1])
     image2 = Image.new('RGB', image.size, BACKGROUND)
@@ -98,8 +112,9 @@ def main():
 
     width, height = image.size
 
-    min_diameter = (width + height) / 110
-    max_diameter = (width + height) / 40
+    min_diameter = height / 64
+    max_diameter = height / 16
+    ignore = False
     print('please input target number (1 ~ 21) : ')
     target_num = int(input())
 
@@ -112,10 +127,14 @@ def main():
             if IMPORTED_SCIPY:
                 kdtree = KDTree([(x, y) for (x, y, _) in circles])
                 while True:
-                    if i< TOTAL_CIRCLES/4:
-                        circle = generate_circle(width, height, max_diameter, max_diameter)
+                    if i < TOTAL_CIRCLES/10:
+                        circle = generate_circle(width, height, max_diameter * 0.8, max_diameter)
+                    elif i < TOTAL_CIRCLES/2:
+                        circle = generate_circle(width, height, min_diameter * 2, max_diameter * 0.8)
                     else:
-                        circle = generate_circle(width, height, min_diameter, max_diameter)
+                        ignore = True
+                        circle = generate_circle(width, height, min_diameter, min_diameter * 2)
+
                     elements, indexes = kdtree.query([(circle[0], circle[1])], k=12)
                     # 거리 상한이 12인 인접한 원들을 찾아 내어 비교
                     for element, index in zip(elements[0], indexes[0]):
@@ -123,7 +142,8 @@ def main():
                         if not np.isinf(element) and circle_intersection(circle, circles[index]):
                             break
                     else:
-                        break
+                        if bounded_check(image, circle) or ignore:
+                            break
                     tries += 1
             else:
                 while any(circle_intersection(circle, circle2) for circle2 in circles):
