@@ -22,7 +22,8 @@ COLORS_ON = [
     ],  # number4
     [
         [color(0x418377), color(0x5FA398), color(0x86B1A7)],  # cyan
-        [color(0x7E8B5F), color(0x899668), color(0xA0AA6D)]  # green
+        [color(0x7E8B5F), color(0x899668), color(0xA0AA6D)],  # green
+        [color(0xA26962), color(0xC0908E), color(0xE0A3A0)]  # pink
     ],  # number5
     [color(0x8A6C46), color(0xB29261), color(0xCCA36B)],  # brown_number6
     [color(0x8A6C46), color(0xB29261), color(0xCCA36B)],  # brown_number7
@@ -82,7 +83,10 @@ COLORS_ON = [
 
 COLORS_OFF = [
     [],
-    [color(0x82837D)],  # gray_number1
+    [
+        [color(0x82837D)],
+        [color(0x82837D)]
+    ],  # gray_number1
     [color(0x768A57), color(0xADC277)],  # number2
     [color(0x60703F), color(0x6F7F41), color(0x8DA253)],  # green_number3
     [color(0x987A53), color(0xB68C5A), color(0xD5A156)],  # brown_number4
