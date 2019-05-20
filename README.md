@@ -24,19 +24,24 @@ team-project-team07 created by GitHub Classroom
 
 ## Manual
 ### Before Start (Packages)
-You have to install it.
+1. You have to install it.
 ```
   pip install scipy
 ```
-if you have this error >> ModuleNotFoundError: No module named 'PIL'
+2. if you have this error >> ModuleNotFoundError: No module named 'PIL'
 ```  
   pip install pillow
 ```
-### Let's Start
-Generate a Image.
-```
-  python colorblindness.py imagename target_num image image(Optional)
-```
+3. Before start, you have to include images you want in the directory.
+
+### How to use
+> Generate a Image.
+>```
+>  python colorblindness.py imagename target_num image image(Optional)
+>```
+>1. 'imagename' is name of a created image.
+>2. You can put 1 to 11 on 'target_num' for indicators.
+>3. You have to put a directory of inputed image on 'image'
 
 ## License
 GNU General Public License v3.0
