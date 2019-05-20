@@ -27,7 +27,11 @@ COLORS_ON = [
     [color(0x8A6C46), color(0xB29261), color(0xCCA36B)],  # brown_number6
     [color(0x8A6C46), color(0xB29261), color(0xCCA36B)],  # brown_number7
     [color(0x7E8B5F), color(0x899668), color(0xA0AA6D)],  # green_number8
-    [color(0x747570), color(0xAC766C), color(0x558669)],  # number9
+    [
+        [color(0x747570)],
+        [color(0xAC766C)],
+        [color(0x558669)]
+    ],  # number9
     [
         [color(0x585B46), color(0x62684E), color(0x88906B)],  # green
         [color(0x554262), color(0x837090)]  # purple
@@ -95,7 +99,10 @@ COLORS_OFF = [
         [color(0x8A6C46), color(0xB29261), color(0xCCA36B)],  # brown
         [color(0x9E635B), color(0xC5817E), color(0xEAA095)]  # pink
     ],  # number8
-    [color(0x6A6D42), color(0xAF6042), color(0x614A3A), color(0x996D46)],  # number9
+    [
+        [color(0xAF6042)],
+        [color(0x6A6D42), color(0x614A3A), color(0x996D46)]
+     ],  # number9
     [color(0x464847), color(0x6A6A6A), color(0x969799)],  # gray_number10
     [color(0x8A6C46), color(0xB29261), color(0xCCA36B)],  # brown_number11
     [
