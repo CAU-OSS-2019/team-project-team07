@@ -70,7 +70,13 @@ def circle_draw(draw_image, image, x_y_r, target_num):
             first_flag = False
         circle_draw_type_5th(draw_image, image, over_image, x_y_r)
     elif target_num in [9]:
-        circle_draw_type_6th(draw_image, image, over_image, x_y_r)
+        if first_flag:
+            print('input filter image file name : ')
+            overlap = input()
+            overlap_image = Image.open('./sample_input/' + overlap + '.png')
+            images.append(overlap_image)
+            first_flag = False
+        circle_draw_type_6th(draw_image, image, overlap_image, x_y_r)
     elif target_num in [10, 13, 14, 15, 16, 17]:
         if first_flag:
             print('input second image file name : ')
