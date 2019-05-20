@@ -16,14 +16,8 @@ images = []
 def overlaps_motive(image, x_y_r):
     # 원의 겹침을 확인하는 함수, 반환값 : boolean
     x, y, r = x_y_r
-    points_x = [x, x, x, x-r, x+r, x-r*0.93, x-r*0.93, x+r*0.93, x+r*0.93]
-    points_y = [y, y-r, y+r, y, y, y+r*0.93, y-r*0.93, y+r*0.93, y-r*0.93]
-
-    for xy in zip(points_x, points_y):
-        if image.getpixel(xy)[:3] != BACKGROUND:
-            return True
-        # 배열[행:열] 앞의 예는 3열을 고정시킨것, getpixel() 해당 점의 RGB 값 반환
-
+    if image.getpixel((x, y))[:3] != BACKGROUND:
+        return True
     return False
 
 

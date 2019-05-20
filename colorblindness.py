@@ -114,14 +114,14 @@ def bounded_check(image, x_y_r):
     # 원이 경계선에 걸쳤는지 확인하는 함수, 반환값 : boolean, 걸치지 않을 때 True
     x, y, r = x_y_r
     cnt = 0
-    points_x = [x, x, x, x-r, x+r, x-r*0.93, x-r*0.93, x+r*0.93, x+r*0.93]
-    points_y = [y, y-r, y+r, y, y, y+r*0.93, y-r*0.93, y+r*0.93, y-r*0.93]
+    points_x = [x, x, x, x-r, x+r]
+    points_y = [y, y-r, y+r, y, y]
 
     for k in image:
         for xy in zip(points_x, points_y):
             if k.getpixel(xy)[:3] != BACKGROUND:
                 cnt += 1
-        if 0 < cnt < 9:
+        if 0 < cnt < 5:
             return False
     return True
 
