@@ -10,6 +10,7 @@ resize_image1 = Image
 resize_image2 = Image
 resize_overlap_image1 = Image
 resize_overlap_image2 = Image
+images = []
 
 
 def overlaps_motive(image, x_y_r):
@@ -63,6 +64,7 @@ def circle_draw_type_3rd(draw_image, image, image2, overlap_image, overlap_image
     global resize_image2
     global resize_overlap_image1
     global resize_overlap_image2
+    global images
     if first_flag:
         resize_image1 = Image.new('RGB', image.size, BACKGROUND)
         resize_image2 = Image.new('RGB', image2.size, BACKGROUND)
@@ -76,6 +78,10 @@ def circle_draw_type_3rd(draw_image, image, image2, overlap_image, overlap_image
         resize_image2.paste(image2, box=(700, 300))
         resize_overlap_image1.paste(overlap_image, box=(0, 300))
         resize_overlap_image2.paste(overlap_image2, box=(700, 300))
+        images.append(resize_image1)
+        images.append(resize_image2)
+        images.append(resize_overlap_image1)
+        images.append(resize_overlap_image2)
         first_flag = False
     if overlaps_motive(resize_image1, (x, y, r)):
         if overlaps_motive(resize_overlap_image1, (x, y, r)):
@@ -124,6 +130,8 @@ def circle_draw_type_5th(draw_image, image, image2, x_y_r):
         image2 = image2.resize((1400, 1400))
         resize_image1.paste(image, box=(0, 300))
         resize_image2.paste(image2, box=(700, 300))
+        images.append(resize_image1)
+        images.append(resize_image2)
         first_flag = False
     if overlaps_motive(resize_image1, (x, y, r)) or overlaps_motive(resize_image2, (x, y, r)):
         fill_colors = COLORS_ON[7]
@@ -154,6 +162,8 @@ def circle_draw_type_7th(draw_image, image, image2, x_y_r, target_num):
         image2 = image2.resize((1400, 1400))
         resize_image1.paste(image, box=(0, 300))
         resize_image2.paste(image2, box=(700, 300))
+        images.append(resize_image1)
+        images.append(resize_image2)
         first_flag = False
     if overlaps_motive(resize_image1, (x, y, r)):
         if overlaps_motive(resize_image2, (x, y, r)):

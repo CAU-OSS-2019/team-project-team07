@@ -55,6 +55,7 @@ def circle_draw(draw_image, image, x_y_r, target_num):
             print('input overlap image file name : ')
             overlap = input()
             overlap_image = Image.open('./sample_input/' + overlap + '.png')
+            images.append(overlap_image)
             first_flag = False
         circle_draw_type_2nd(draw_image, image, overlap_image, x_y_r, target_num)
     elif target_num in [3, 5]:
@@ -68,6 +69,7 @@ def circle_draw(draw_image, image, x_y_r, target_num):
             print('input second overlap image file name : ')
             second_overlap = input()
             second_overlap_image = Image.open('./sample_input/' + second_overlap + '.png')
+            del images[0]
             first_flag = False
         circle_draw_type_3rd(draw_image, image, second_image, overlap_image, second_overlap_image, x_y_r, target_num)
     elif target_num in [6, 8, 12]:
@@ -77,6 +79,7 @@ def circle_draw(draw_image, image, x_y_r, target_num):
             print('input second image file name : ')
             second = input()
             second_image = Image.open('./sample_input/' + second + '.png')
+            del images[0]
             first_flag = False
         circle_draw_type_5th(draw_image, image, second_image, x_y_r)
     elif target_num in [9]:
@@ -86,6 +89,7 @@ def circle_draw(draw_image, image, x_y_r, target_num):
             print('input second image file name : ')
             second = input()
             second_image = Image.open('./sample_input/' + second + '.png')
+            del images[0]
             first_flag = False
         circle_draw_type_7th(draw_image, image, second_image, x_y_r, target_num)
     elif target_num in [19, 20, 21]:
@@ -93,6 +97,7 @@ def circle_draw(draw_image, image, x_y_r, target_num):
             print('input second image file name : ')
             second = input()
             second_image = Image.open('./sample_input/' + second + '.png')
+            images.append(second_image)
             first_flag = False
         circle_draw_type_8th(draw_image, image, second_image, x_y_r, target_num)
     else:
@@ -107,19 +112,21 @@ def bounded_check(image, x_y_r):
     points_x = [x, x, x, x-r, x+r, x-r*0.93, x-r*0.93, x+r*0.93, x+r*0.93]
     points_y = [y, y-r, y+r, y, y, y+r*0.93, y-r*0.93, y+r*0.93, y-r*0.93]
 
-    for xy in zip(points_x, points_y):
-        if image.getpixel(xy)[:3] != BACKGROUND:
-            cnt += 1
-    if cnt == 0 or cnt == 9:
-        return True
-    return False
+    for k in image:
+        for xy in zip(points_x, points_y):
+            if k.getpixel(xy)[:3] != BACKGROUND:
+                cnt += 1
+        if 0 < cnt < 9:
+            return False
+    return True
 
 
 def main():
     image = Image.open(sys.argv[1])
     image2 = Image.new('RGB', image.size, BACKGROUND)
     draw_image = ImageDraw.Draw(image2)
-
+    global images
+    images.append(image)
     width, height = image.size
 
     min_diameter = height / 64
@@ -152,7 +159,7 @@ def main():
                         if not np.isinf(element) and circle_intersection(circle, circles[index]):
                             break
                     else:
-                        if bounded_check(image, circle) or ignore:
+                        if bounded_check(images, circle) or ignore:
                             break
                     tries += 1
             else:
