@@ -44,66 +44,24 @@ second_overlap_image = Image
 
 
 def circle_draw(draw_image, image, x_y_r, target_num):
-    global first_flag
     global overlap_image
     global second_image
     global second_overlap_image
     if target_num in [1]:
         circle_draw_type_1st(draw_image, image, x_y_r)
     elif target_num in [2, 4, 11]:
-        if first_flag:
-            print('input overlap image file name : ')
-            overlap = input()
-            overlap_image = Image.open('./sample_input/' + overlap + '.png')
-            images.append(overlap_image)
-            first_flag = False
         circle_draw_type_2nd(draw_image, image, overlap_image, x_y_r, target_num)
     elif target_num in [3, 5]:
-        if first_flag:
-            print('input second image file name : ')
-            second = input()
-            second_image = Image.open('./sample_input/' + second + '.png')
-            print('input first overlap image file name : ')
-            overlap = input()
-            overlap_image = Image.open('./sample_input/' + overlap + '.png')
-            print('input second overlap image file name : ')
-            second_overlap = input()
-            second_overlap_image = Image.open('./sample_input/' + second_overlap + '.png')
-            del images[0]
-            first_flag = False
         circle_draw_type_3rd(draw_image, image, second_image, overlap_image, second_overlap_image, x_y_r, target_num)
     elif target_num in [6, 8, 12]:
         circle_draw_type_4th(draw_image, image, x_y_r, target_num)
     elif target_num in [7]:
-        if first_flag:
-            print('input second image file name : ')
-            second = input()
-            second_image = Image.open('./sample_input/' + second + '.png')
-            del images[0]
-            first_flag = False
         circle_draw_type_5th(draw_image, image, second_image, x_y_r)
     elif target_num in [9]:
-        if first_flag:
-            print('input filter image file name : ')
-            overlap = input()
-            overlap_image = Image.open('./sample_input/' + overlap + '.png')
-            first_flag = False
         circle_draw_type_6th(draw_image, image, overlap_image, x_y_r)
     elif target_num in [10, 13, 14, 15, 16, 17]:
-        if first_flag:
-            print('input second image file name : ')
-            second = input()
-            second_image = Image.open('./sample_input/' + second + '.png')
-            del images[0]
-            first_flag = False
         circle_draw_type_7th(draw_image, image, second_image, x_y_r, target_num)
     elif target_num in [19, 20, 21]:
-        if first_flag:
-            print('input second image file name : ')
-            second = input()
-            second_image = Image.open('./sample_input/' + second + '.png')
-            images.append(second_image)
-            first_flag = False
         circle_draw_type_8th(draw_image, image, second_image, x_y_r, target_num)
     else:
         print('1~21 사이의 숫자를 입력해주세요')
@@ -126,19 +84,52 @@ def bounded_check(image, x_y_r):
     return True
 
 
+def shortcut(keyword):
+    print('input ' + keyword + ' image file name : ')
+    name = input()
+    return Image.open('./sample_input/' + name + '.png')
+
+
+def setting():
+    global overlap_image
+    global second_image
+    global second_overlap_image
+    print('please input target number (1 ~ 21) : ')
+    target_num = int(input())
+    first_image = shortcut('first')
+    images.append(first_image)
+    if target_num in [2, 4, 11]:
+        overlap_image = shortcut('overlap')
+        images.append(overlap_image)
+    elif target_num in [3, 5]:
+        second_image = shortcut('second')
+        overlap_image = shortcut('overlap')
+        second_overlap_image = shortcut('second overlap')
+        del images[0]
+    elif target_num in [7, 10, 13, 14, 15, 16, 17]:
+        second_image = shortcut('second')
+        del images[0]
+    elif target_num in [9]:
+        overlap_image = shortcut('filter')
+    elif target_num in [19, 20, 21]:
+        second_image = shortcut('second')
+        images.append(second_image)
+    else:
+        print('1~21 사이의 숫자를 입력해주세요')
+        sys.exit()
+    return target_num, first_image
+
+
 def main():
-    image = Image.open(sys.argv[1])
+    target_num, image = setting()
     image2 = Image.new('RGB', image.size, BACKGROUND)
     draw_image = ImageDraw.Draw(image2)
     global images
-    images.append(image)
     width, height = image.size
 
     min_diameter = height / 64
     max_diameter = height / 16
     ignore = False
-    print('please input target number (1 ~ 21) : ')
-    target_num = int(input())
 
     circle = generate_circle(width, height, min_diameter, max_diameter)
     circles = [circle]
@@ -181,7 +172,7 @@ def main():
 
     image2.show()
     # 생성된 색약 이미지를 띄워줌
-    image2.save('./sample_output/new_colorblindness_sample.jpg')
+    image2.save('./sample_output/new_colorblindness_sample.png')
     # 생성된 색약 이미지 저장
 
 
