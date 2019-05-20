@@ -96,9 +96,23 @@ def circle_draw_type_5th(draw_image, image, image2, x_y_r):
                        outline=fill_color)
 
 
-def circle_draw_type_6th(draw_image, image, x_y_r):
+def circle_draw_type_6th(draw_image, image, image2, x_y_r):
     # 제 9표 함수
     x, y, r = x_y_r
+    if overlaps_motive(image, (x, y, r)):
+        if overlaps_motive(image2, (x, y, r)):
+            fill_colors = COLORS_ON[9][1]
+        else:
+            fill_colors = COLORS_ON[9][2] if random.random() < 0.8 else COLORS_ON[9][0]
+    elif overlaps_motive(image2, (x, y, r)):
+        fill_colors = COLORS_OFF[9][0]
+    else:
+        fill_colors = COLORS_OFF[9][1]
+
+    fill_color = random.choice(fill_colors)
+    draw_image.ellipse((x - r, y - r, x + r, y + r),
+                       fill=fill_color,
+                       outline=fill_color)
 
 
 def circle_draw_type_7th(draw_image, image, image2, x_y_r, target_num):
