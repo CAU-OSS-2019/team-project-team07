@@ -47,22 +47,20 @@ def circle_draw(draw_image, image, x_y_r, target_num):
     global overlap_image
     global second_image
     global second_overlap_image
-    if target_num in [1]:
-        circle_draw_type_1st(draw_image, image, x_y_r)
+    if target_num in [1, 7]:
+        circle_draw_type_1st(draw_image, image, second_image, x_y_r, target_num)
     elif target_num in [2, 4, 11]:
         circle_draw_type_2nd(draw_image, image, overlap_image, x_y_r, target_num)
     elif target_num in [3, 5]:
         circle_draw_type_3rd(draw_image, image, second_image, overlap_image, second_overlap_image, x_y_r, target_num)
     elif target_num in [6, 8, 12]:
         circle_draw_type_4th(draw_image, image, x_y_r, target_num)
-    elif target_num in [7]:
-        circle_draw_type_5th(draw_image, image, second_image, x_y_r)
     elif target_num in [9]:
-        circle_draw_type_6th(draw_image, image, overlap_image, x_y_r)
+        circle_draw_type_5th(draw_image, image, overlap_image, x_y_r)
     elif target_num in [10, 13, 14, 15, 16, 17]:
-        circle_draw_type_7th(draw_image, image, second_image, x_y_r, target_num)
+        circle_draw_type_6th(draw_image, image, second_image, x_y_r, target_num)
     elif target_num in [19, 20, 21]:
-        circle_draw_type_8th(draw_image, image, second_image, x_y_r, target_num)
+        circle_draw_type_7th(draw_image, image, second_image, x_y_r, target_num)
     else:
         print('1~21 사이의 숫자를 입력해주세요')
         sys.exit()
@@ -106,7 +104,9 @@ def setting():
         overlap_image = shortcut('overlap')
         second_overlap_image = shortcut('second overlap')
         del images[0]
-    elif target_num in [7, 10, 13, 14, 15, 16, 17]:
+    elif target_num in [6, 8, 12]:
+        pass
+    elif target_num in [1, 7, 10, 13, 14, 15, 16, 17]:
         second_image = shortcut('second')
         del images[0]
     elif target_num in [9]:
