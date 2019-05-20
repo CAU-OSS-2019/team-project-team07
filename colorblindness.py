@@ -57,7 +57,7 @@ def circle_draw(draw_image, image, x_y_r, target_num):
         circle_draw_type_4th(draw_image, image, x_y_r, target_num)
     elif target_num in [9]:
         circle_draw_type_5th(draw_image, image, overlap_image, x_y_r)
-    elif target_num in [10, 13, 14, 15, 16, 17]:
+    elif target_num in [10, 13, 14, 15, 16, 17, 18]:
         circle_draw_type_6th(draw_image, image, second_image, x_y_r, target_num)
     elif target_num in [19, 20, 21]:
         circle_draw_type_7th(draw_image, image, second_image, x_y_r, target_num)
@@ -106,7 +106,7 @@ def setting():
         del images[0]
     elif target_num in [6, 8, 12]:
         pass
-    elif target_num in [1, 7, 10, 13, 14, 15, 16, 17]:
+    elif target_num in [1, 7, 10, 13, 14, 15, 16, 17, 18]:
         second_image = shortcut('second')
         del images[0]
     elif target_num in [9]:
