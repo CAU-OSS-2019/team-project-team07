@@ -110,7 +110,7 @@ COLORS_OFF = [
     [color(0x464847), color(0x6A6A6A), color(0x969799)],  # gray_number10
     [color(0x8A6C46), color(0xB29261), color(0xCCA36B)],  # brown_number11
     [
-        [color(0x62937E), color(0x78AF9C), color(0x97C4B0)],  # green
+        [color(0x62937E), color(0x96d1bb), color(0xb3e0cc)],  # green
         [color(0x418377), color(0x5FA398), color(0x86B1A7)]  # cyan
     ],  # number12
     [color(0x464847), color(0x6A6A6A), color(0x969799)],  # gray_number13
