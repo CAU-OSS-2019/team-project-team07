@@ -14,7 +14,7 @@ images = []
 
 
 def overlaps_motive(image, x_y_r):
-    # 원의 겹침을 확인하는 함수, 반환값 : boolean
+    # check whether or not circle is overlapped, return : boolean
     x, y, r = x_y_r
     if image.getpixel((x, y))[:3] != BACKGROUND:
         return True
@@ -22,7 +22,7 @@ def overlaps_motive(image, x_y_r):
 
 
 def circle_draw_type_1st(draw_image, image, image2, x_y_r, target_num):
-    # 제 1, 7표 함수
+    # design table 1, 7
     x, y, r = x_y_r
     global first_flag
     global resize_image1
@@ -49,7 +49,7 @@ def circle_draw_type_1st(draw_image, image, image2, x_y_r, target_num):
 
 
 def circle_draw_type_2nd(draw_image, image, image2, x_y_r, target_num):
-    # 제 2표, 4표, 11표 함수
+    # design table 2, 4, 11
     x, y, r = x_y_r
     if overlaps_motive(image, (x, y, r)):
         if overlaps_motive(image2, (x, y, r)):
@@ -68,7 +68,7 @@ def circle_draw_type_2nd(draw_image, image, image2, x_y_r, target_num):
 
 
 def circle_draw_type_3rd(draw_image, image, image2, overlap_image, overlap_image2, x_y_r, target_num):
-    # 제 3표, 5표
+    # design table 3, 5
     x, y, r = x_y_r
     global first_flag
     global resize_image1
@@ -116,7 +116,7 @@ def circle_draw_type_3rd(draw_image, image, image2, overlap_image, overlap_image
 
 
 def circle_draw_type_4th(draw_image, image, x_y_r, target_num):
-    # 제 6표, 8표, 12표 함수
+    # design table 6, 8, 12
     x, y, r = x_y_r
     if overlaps_motive(image, (x, y, r)):
         fill_colors = COLORS_ON[target_num]
@@ -129,7 +129,7 @@ def circle_draw_type_4th(draw_image, image, x_y_r, target_num):
 
 
 def circle_draw_type_5th(draw_image, image, image2, x_y_r):
-    # 제 9표 함수
+    # design table 9
     x, y, r = x_y_r
     if overlaps_motive(image, (x, y, r)):
         if overlaps_motive(image2, (x, y, r)):
@@ -148,7 +148,7 @@ def circle_draw_type_5th(draw_image, image, image2, x_y_r):
 
 
 def circle_draw_type_6th(draw_image, image, image2, x_y_r, target_num):
-    # 제 10표, 13표, 14표, 15표, 16표, 17표, 18표 함수
+    # design table 10, 13, 14, 15, 16, 17, 18
     x, y, r = x_y_r
     global first_flag
     global resize_image1
@@ -179,7 +179,7 @@ def circle_draw_type_6th(draw_image, image, image2, x_y_r, target_num):
 
 
 def circle_draw_type_7th(draw_image, image, image2, x_y_r, target_num):
-    # 제 19표, 20표, 21표 함수
+    # design table 19, 20, 21
     x, y, r = x_y_r
     if overlaps_motive(image, (x, y, r)):
         if overlaps_motive(image2, (x, y, r)):

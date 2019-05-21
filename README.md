@@ -19,10 +19,9 @@ team-project-team07 created by GitHub Classroom
 ### Example Flow
 | 과정 | 이미지 |
 |---|---|
-| 1. 이미지 입력 | ![]() |
-| 2. 이미지 윤곽선 추출 | ![]() |
-| 3. 지표의 타입 지정 | ex. 제 1표 |
-| 4. Generating | ![]() |
+| 1. 이미지 입력 | ![](readme_images/readmeimage1.png){: width="300" height="300"} |
+| 2. 지표의 타입 지정 | ex. 제 1표 |
+| 3. Generating | ![](readme_images/readmeimage3.png){: width="300" height="300"} |
 
 이해를 돕기 위한 참고용 표로 지표의 종류에 따라 달라질 수 있음.
 

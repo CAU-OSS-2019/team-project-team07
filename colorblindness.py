@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*- 
+
 import sys
 import math
 
@@ -14,24 +16,24 @@ TOTAL_CIRCLES = 500
 
 
 def generate_circle(image_width, image_height, min_diameter, max_diameter):
-    # 원의 위치를 결정 하는 함수, 반환값 : circle(x좌표, y좌표, 반지름)
+    # define the location of circle, return : circle(x-coordinate, y-coordinate, radius)
     radius = random.triangular(min_diameter, max_diameter,
                                max_diameter * 0.2 + min_diameter * 0.8) / 2
-    # 원의 직경은 삼각분포를 이루며 최소 직경값에 치우침
+    # the diameter of circle achieve triangular distribution and it is inclined to minimum
 
     angle = random.uniform(0, math.pi * 2)
-    # 랜덤 각
+    # random angle
     distance_from_center = random.uniform(0, image_width * 0.48 - radius)
-    # 랜덤 거리
+    # random distance
     x = image_width  * 0.5 + math.cos(angle) * distance_from_center
     y = image_height * 0.5 + math.sin(angle) * distance_from_center
-    # 중앙으로 부터 랜덤한 위치에 랜덤한 직경의 원의 중심을 지정
+    # assign a random diameter circle to the random location from center
 
     return x, y, radius
 
 
 def circle_intersection(x1_y1_r1, x2_y2_r2):
-    # 두원의 겹침 조사 함수 겹치지 않을 때 true 반환, 반환값 : boolean
+    # check whether or not two circles are intersection, if not, return true, return : boolean
     x1, y1, r1 = x1_y1_r1
     x2, y2, r2 = x2_y2_r2
     return (x2 - x1)**2 + (y2 - y1)**2 < 1.13*(r2 + r1)**2
@@ -67,7 +69,7 @@ def circle_draw(draw_image, image, x_y_r, target_num):
 
 
 def bounded_check(image, x_y_r):
-    # 원이 경계선에 걸쳤는지 확인하는 함수, 반환값 : boolean, 걸치지 않을 때 True
+    # check circle cross boundary, if not, return true, return : boolean
     x, y, r = x_y_r
     cnt = 0
     points_x = [x, x, x, x-r, x+r]
@@ -149,9 +151,9 @@ def main():
                         circle = generate_circle(width, height, min_diameter, min_diameter * 2)
 
                     elements, indexes = kdtree.query([(circle[0], circle[1])], k=12)
-                    # 거리 상한이 12인 인접한 원들을 찾아 내어 비교
+                    # compare adjacent circles which upper limits are 12
                     for element, index in zip(elements[0], indexes[0]):
-                        # 무한댓값 없고 원이 겹치지 않으면 루프 탈출
+                        # escape loop when there is no infinite value and no overlapping
                         if not np.isinf(element) and circle_intersection(circle, circles[index]):
                             break
                     else:
@@ -171,9 +173,9 @@ def main():
         pass
 
     image2.show()
-    # 생성된 색약 이미지를 띄워줌
+    # show the generated test image(result)
     image2.save('./sample_output/new_colorblindness_sample.png')
-    # 생성된 색약 이미지 저장
+    # save the generated test image(result)
 
 
 if __name__ == '__main__':
