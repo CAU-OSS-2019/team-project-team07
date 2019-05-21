@@ -44,20 +44,20 @@ COLORS_ON = [
     ],  # number11
     [color(0x8A6C46), color(0xB29261), color(0xCCA36B)],  # brown_number12
     [
-        [color(0x9E635B), color(0xC5817E), color(0xEAA095)],  # pink
-        [color(0x0E6A5D), color(0x2E7F70), color(0x4A9380)]  # cyan
+        [color(0xc37279), color(0xc66a6f), color(0xf09695)],  # pink
+        [color(0x006e61), color(0x298270), color(0x46ab99)]  # cyan
     ],  # number13
     [
-        [color(0x9E635B), color(0xC5817E), color(0xEAA095)],  # pink
-        [color(0x0E6A5D), color(0x2E7F70), color(0x4A9380)]  # cyan
+        [color(0xc37279), color(0xc66a6f), color(0xf09695)],  # pink
+        [color(0x006e61), color(0x298270), color(0x46ab99)]  # cyan
     ],  # number14
     [
-        [color(0x7C5A58), color(0x956865), color(0xAE7E74)],  # weak pink
-        [color(0x466458), color(0x517363), color(0x6F8B7C)]  # weak cyan
+        [color(0x8d5554), color(0xa47472), color(0xc98987)],  # weak pink
+        [color(0x668878), color(0x6b968c), color(0x87b2a9)]  # weak cyan
     ],  # number15
     [
-        [color(0x7C5A58), color(0x956865), color(0xAE7E74)],  # weak pink
-        [color(0x466458), color(0x517363), color(0x6F8B7C)]  # weak cyan
+        [color(0x8d5554), color(0xa47472), color(0xc98987)],  # weak pink
+        [color(0x668878), color(0x6b968c), color(0x87b2a9)]  # weak cyan
     ],  # number16
     [
         [color(0x846560), color(0x9E7D78), color(0xB08F88)],  # very weak pink
@@ -68,12 +68,12 @@ COLORS_ON = [
         [color(0x49594E), color(0x5D6F63), color(0x6B8778)] # very weak cyan
     ],  # number18
     [
-        [color(0x9E635B), color(0xC5817E), color(0xEAA095)],  # pink
-        [color(0x0E6A5D), color(0x2E7F70), color(0x4A9380)]  # cyan
+        [color(0xc37279), color(0xc66a6f), color(0xf09695)],  # pink
+        [color(0x006e61), color(0x298270), color(0x46ab99)]  # cyan
     ],  # number19
     [
-        [color(0x7C5A58), color(0x956865), color(0xAE7E74)],  # weak pink
-        [color(0x466458), color(0x517363), color(0x6F8B7C)]  # weak cyan
+        [color(0x8d5554), color(0xa47472), color(0xc98987)],  # weak pink
+        [color(0x668878), color(0x6b968c), color(0x87b2a9)]  # weak cyan
     ],  # number20
     [
         [color(0x846560), color(0x9E7D78), color(0xB08F88)],  # very weak pink
