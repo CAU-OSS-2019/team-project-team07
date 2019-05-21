@@ -8,22 +8,22 @@ COLORS_ON = [
     [
         [color(0x9E635B), color(0xC5817E), color(0xEAA095)],  # pink
         [color(0x9A7C56), color(0xC99F6D), color(0xEAB77E)],  # brown
-        [color(0x62937E), color(0x78AF9C), color(0x97C4B0)]  # green
+        [color(0x62937E), color(0x96d1bb), color(0xb3e0cc)]  # green
     ],  # number2
     [
         [color(0x9E635B), color(0xC5817E), color(0xEAA095)],  # pink
         [color(0x9A7C56), color(0xC99F6D), color(0xEAB77E)],  # brown
-        [color(0x62937E), color(0x78AF9C), color(0x97C4B0)]  # green
+        [color(0x62937E), color(0x96d1bb), color(0xb3e0cc)]  # green
     ],  # number3
     [
-        [color(0x418377), color(0x5FA398), color(0x86B1A7)],  # cyan
+        [color(0x29a58f), color(0x62d1bf), color(0x93d6c6)],  # cyan
         [color(0x7E8B5F), color(0x899668), color(0xA0AA6D)],  # green
-        [color(0xA26962), color(0xC0908E), color(0xE0A3A0)]  # pink
+        [color(0x9E635B), color(0xC5817E), color(0xEAA095)],  # pink
     ],  # number4
     [
-        [color(0x418377), color(0x5FA398), color(0x86B1A7)],  # cyan
+        [color(0x29a58f), color(0x62d1bf), color(0x93d6c6)],  # cyan
         [color(0x7E8B5F), color(0x899668), color(0xA0AA6D)],  # green
-        [color(0xA26962), color(0xC0908E), color(0xE0A3A0)]  # pink
+        [color(0x9E635B), color(0xC5817E), color(0xEAA095)],  # pink
     ],  # number5
     [color(0x8A6C46), color(0xB29261), color(0xCCA36B)],  # brown_number6
     [color(0x8A6C46), color(0xB29261), color(0xCCA36B)],  # brown_number7
@@ -88,8 +88,8 @@ COLORS_OFF = [
         [color(0x82837D)]
     ],  # gray_number1
     [color(0x768A57), color(0xADC277)],  # number2
-    [color(0x60703F), color(0x6F7F41), color(0x8DA253)],  # green_number3
-    [color(0x987A53), color(0xB68C5A), color(0xD5A156)],  # brown_number4
+    [color(0x8ea068), color(0x92a361), color(0xc1db7a)],  # green_number3
+    [color(0xa0794e), color(0xc6a075), color(0xffaf3d)],  # brown_number4
     [color(0x8A6C46), color(0xB29261), color(0xCCA36B)],  # brown_number5
     [
         [color(0x60703F), color(0x6F7F41), color(0x8DA253)],  # green
