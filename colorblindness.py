@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*- 
 
 import sys
+import os
 import math
 
 from draw_target import *
@@ -174,7 +175,11 @@ def main():
 
     image2.show()
     # show the generated test image(result)
-    image2.save('./sample_output/new_colorblindness_sample.png')
+
+    output_dir = "./sample_output"
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+    image2.save(os.path.join(output_dir, 'new_colorblindness_sample.png'))
     # save the generated test image(result)
 
 
