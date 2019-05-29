@@ -41,7 +41,7 @@ We can generate a image about given target number & input numbers(or characters)
 ### How to use
 > Generate a Image.
 >```
->  python colorblindness.py imagename target_num image image(Optional)
+>  python colorblindness.py
 >```
 >```
 >  please input target number (1 ~ 21) : 
