@@ -46,7 +46,7 @@ We can generate a image about given target number & input numbers(or characters)
 >```
 >  please input target number (1 ~ 21) : 
 >```
->You can put 1 to 11 for indicators about colorblindness testing.
+>You can put 1 to 21 for indicators about colorblindness testing.
 >```
 >  input first image file name : 
 >```
