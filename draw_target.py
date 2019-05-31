@@ -11,6 +11,7 @@ resize_image2 = Image
 resize_overlap_image1 = Image
 resize_overlap_image2 = Image
 images = []
+sol_table = [0] * 10
 
 
 def overlaps_motive(image, x_y_r):

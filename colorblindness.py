@@ -85,9 +85,13 @@ def bounded_check(image, x_y_r):
     return True
 
 
+dic = {'first': 1, 'second': 2, 'overlap': 3, 'second overlap': 4}
+
+
 def shortcut(keyword):
     print('input ' + keyword + ' image file name : ')
     name = input()
+    sol_table[dic[keyword]] = name
     return Image.open('./sample_input/' + name + '.png')
 
 
@@ -97,6 +101,7 @@ def setting():
     global second_overlap_image
     print('please input target number (1 ~ 21) : ')
     target_num = int(input())
+    sol_table[0] = target_num
     first_image = shortcut('first')
     images.append(first_image)
     if target_num in [2, 4, 11]:
@@ -121,6 +126,40 @@ def setting():
         print('1~21 사이의 숫자를 입력해주세요')
         sys.exit()
     return target_num, first_image
+
+
+def check_solution_print(a = 'x', b = 'x',  c = 'x', d = 'x'):
+        print('정상자 : ', a)
+        print('제 1, 제 2 색각 이상자 : ', b)
+        print('제 3 색각 이상자 : ', c)
+        print('전색약, 전색맹 : ', d)
+
+
+def power_solution_print(a, b, c):
+        print('정상자 : ', sol_table[1] + sol_table[2])
+        print('제 1, 제 2 색각 이상자 : ', sol_table[1] + sol_table[2])
+        print('제 3 색각 이상자 : ', sol_table[1] + sol_table[2])
+        print('전색약, 전색맹 : ', sol_table[1] + sol_table[2])
+
+def solution():
+    target_num = sol_table[0]
+    print('제 ', target_num, '표')
+    if target_num in [1]:
+        check_solution_print(sol_table[1] + sol_table[2], sol_table[1] + sol_table[2], sol_table[1] + sol_table[2], sol_table[1] + sol_table[2])
+    elif target_num in [2]:
+        check_solution_print()
+    elif target_num in [4, 11]:
+        check_solution_print()
+    elif target_num in [3, 5]:
+        check_solution_print()
+    elif target_num in [6, 8, 12]:
+        check_solution_print()
+    elif target_num in [7, 10, 13, 14, 15, 16, 17, 18]:
+        check_solution_print()
+    elif target_num in [9]:
+        check_solution_print()
+    elif target_num in [19, 20, 21]:
+        check_solution_print()
 
 
 def main():
@@ -181,6 +220,8 @@ def main():
         os.makedirs(output_dir)
     image2.save(os.path.join(output_dir, 'new_colorblindness_sample.png'))
     # save the generated test image(result)
+
+    solution()
 
 
 if __name__ == '__main__':
