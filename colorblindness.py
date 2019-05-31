@@ -91,8 +91,13 @@ sol_table = [0] * 10
 
 def shortcut(keyword):
     print('input ' + keyword + ' image file name : ')
-    name = input()
-    sol_table[dic[keyword]] = name
+    tmp = input()
+    name = tmp
+    if 'up' in name:
+        tmp = '상'
+    elif 'down' in name:
+        tmp = '하'
+    sol_table[dic[keyword]] = tmp
     return Image.open('./sample_input/' + name + '.png')
 
 
@@ -136,11 +141,14 @@ def check_solution_print(a='x', b='x', c='x', d='x'):
     print('전색약, 전색맹 : ', d)
 
 
-def power_solution_print(a, b, c):
-    print('정상자 : ', sol_table[1] + sol_table[2])
-    print('제 1, 제 2 색각 이상자 : ', sol_table[1] + sol_table[2])
-    print('제 3 색각 이상자 : ', sol_table[1] + sol_table[2])
-    print('전색약, 전색맹 : ', sol_table[1] + sol_table[2])
+def power_solution_print(a='x', b='x', c='x', d='x', e='x', f='x', g='x'):
+    print('정상자 : ', a)
+    print('제 1 (강도) : ', b)
+    print('제 2 (강도) : ', c)
+    print('제 1 (중등도) : ', d)
+    print('제 2 (중등도) : ', e)
+    print('제 1 (약도) : ', f)
+    print('제 2 (약도) : ', g)
 
 
 def solution():
@@ -164,8 +172,12 @@ def solution():
         check_solution_print('긴 길', '지름길', '긴길')
     elif target_num in [12]:
         check_solution_print('o', 'x', 'o')
-    elif target_num in [19, 20, 21]:
-        power_solution_print()
+    elif target_num in [13, 14, 19]:
+        power_solution_print(sol_table[1] + sol_table[2], sol_table[2], sol_table[1], sol_table[1] + sol_table[2], sol_table[1] + sol_table[2], sol_table[1] + sol_table[2], sol_table[1] + sol_table[2])
+    elif target_num in [15, 16, 20]:
+        power_solution_print(sol_table[1] + sol_table[2], 'x', 'x', sol_table[2], sol_table[1], sol_table[1] + sol_table[2], sol_table[1] + sol_table[2])
+    elif target_num in [17, 18, 21]:
+        power_solution_print(sol_table[1] + sol_table[2], 'x', 'x', 'x', 'x', sol_table[2], sol_table[1])
 
 
 def main():
