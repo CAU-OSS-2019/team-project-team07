@@ -5,6 +5,7 @@ import os
 import math
 
 from draw_target import *
+from make_solution import *
 
 try:
     from scipy.spatial import cKDTree as KDTree
@@ -85,9 +86,18 @@ def bounded_check(image, x_y_r):
     return True
 
 
+dic = {'first': 1, 'second': 2, 'overlap': 3, 'second overlap': 4, 'filter': 3}
+
+
 def shortcut(keyword):
     print('input ' + keyword + ' image file name : ')
-    name = input()
+    tmp = input()
+    name = tmp
+    if 'up' in tmp.lower():
+        tmp = '상'
+    elif 'down' in tmp.lower():
+        tmp = '하'
+    sol_table[dic[keyword]] = tmp
     return Image.open('./sample_input/' + name + '.png')
 
 
@@ -97,6 +107,7 @@ def setting():
     global second_overlap_image
     print('please input target number (1 ~ 21) : ')
     target_num = int(input())
+    sol_table[0] = target_num
     first_image = shortcut('first')
     images.append(first_image)
     if target_num in [2, 4, 11]:
@@ -181,6 +192,8 @@ def main():
         os.makedirs(output_dir)
     image2.save(os.path.join(output_dir, 'new_colorblindness_sample.png'))
     # save the generated test image(result)
+
+    solution()
 
 
 if __name__ == '__main__':
