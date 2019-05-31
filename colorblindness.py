@@ -93,9 +93,9 @@ def shortcut(keyword):
     print('input ' + keyword + ' image file name : ')
     tmp = input()
     name = tmp
-    if 'up' in name:
+    if 'up' in tmp.lower():
         tmp = '상'
-    elif 'down' in name:
+    elif 'down' in tmp.lower():
         tmp = '하'
     sol_table[dic[keyword]] = tmp
     return Image.open('./sample_input/' + name + '.png')
