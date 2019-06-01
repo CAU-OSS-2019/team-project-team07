@@ -281,7 +281,7 @@ class Ui_MainWindow(QWidget):
             self.btnFirstOver.setEnabled(False)
             self.btnSndOver.setEnabled(False)
 
-    def openFileDialog1(self):
+    def btnClickEventOpenFileDialog1(self):
         global firstFileName
         fileName, _ = QFileDialog.getOpenFileName(self)
         print(fileName)
@@ -290,7 +290,7 @@ class Ui_MainWindow(QWidget):
             self.txtfirst.setText(fileName)
 
 
-    def openFileDialog2(self):
+    def btnClickEventOpenFileDialog2(self):
         global firstOverFileName
         fileName, _ = QFileDialog.getOpenFileName(self)
         print(fileName)
@@ -299,7 +299,7 @@ class Ui_MainWindow(QWidget):
             self.txtFirstOver.setText(fileName)
 
 
-    def openFileDialog3(self):
+    def btnClickEventOpenFileDialog3(self):
         global secondFileName
         fileName, _ = QFileDialog.getOpenFileName(self)
         print(fileName)
@@ -307,7 +307,7 @@ class Ui_MainWindow(QWidget):
             secondFileName = fileName.split('/')[-1].split('.')[0]
             self.txtSnd.setText(fileName)
 
-    def openFileDialog4(self):
+    def btnClickEventOpenFileDialog4(self):
         global secondOverFileName
         fileName, _ = QFileDialog.getOpenFileName(self)
 
@@ -315,7 +315,7 @@ class Ui_MainWindow(QWidget):
             secondOverFileName = fileName.split('/')[-1].split('.')[0]
             self.txtSndOver.setText(fileName)
 
-    def transpose(self):
+    def btnClickEventTranspose(self):
         global image2
         global target_num
         target_num, image = setting()
@@ -376,7 +376,7 @@ class Ui_MainWindow(QWidget):
         self.resultImage.setPixmap(smaller_pixmap)
         solution()
 
-    def saveImage(self):
+    def btnClickEventSaveImage(self):
         global image2
 
         output_dir = "./sample_output"
@@ -406,12 +406,12 @@ class Ui_MainWindow(QWidget):
         self.btnSave.setText(_translate("MainWindow", "저장"))
         self.btnFirstOver.setEnabled(False)
         self.btnSndOver.setEnabled(False)
-        self.btnFirst.clicked.connect(self.openFileDialog1)
-        self.btnFirstOver.clicked.connect(self.openFileDialog2)
-        self.btnSnd.clicked.connect(self.openFileDialog3)
-        self.btnSndOver.clicked.connect(self.openFileDialog4)
-        self.btnTrans.clicked.connect(self.transpose)
-        self.btnSave.clicked.connect(self.saveImage)
+        self.btnFirst.clicked.connect(self.btnClickEventOpenFileDialog1)
+        self.btnFirstOver.clicked.connect(self.btnClickEventOpenFileDialog2)
+        self.btnSnd.clicked.connect(self.btnClickEventOpenFileDialog3)
+        self.btnSndOver.clicked.connect(self.btnClickEventOpenFileDialog4)
+        self.btnTrans.clicked.connect(self.btnClickEventTranspose)
+        self.btnSave.clicked.connect(self.btnClickEventSaveImage)
 
 
 def main():
