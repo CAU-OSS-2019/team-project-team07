@@ -8,10 +8,7 @@ from draw_target import *
 from make_solution import *
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QWidget, QApplication, QFileDialog, QPushButton
-from PyQt5.QtGui import *
-from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QGraphicsItem
 from PIL.ImageQt import ImageQt
-import PyQt5
 
 try:
     from scipy.spatial import cKDTree as KDTree
@@ -21,7 +18,18 @@ except ImportError:
     IMPORTED_SCIPY = False
 
 TOTAL_CIRCLES = 500
+image2 = None
 
+first_flag = True
+overlap_image = Image
+second_image = Image
+second_overlap_image = Image
+
+firstFileName = None
+firstOverFileName = None
+secondFileName = None
+secondOverFileName = None
+target_num = 1
 
 def generate_circle(image_width, image_height, min_diameter, max_diameter):
     # define the location of circle, return : circle(x-coordinate, y-coordinate, radius)
@@ -46,16 +54,6 @@ def circle_intersection(x1_y1_r1, x2_y2_r2):
     x2, y2, r2 = x2_y2_r2
     return (x2 - x1)**2 + (y2 - y1)**2 < 1.13*(r2 + r1)**2
 
-image2 = None
-first_flag = True
-overlap_image = Image
-second_image = Image
-second_overlap_image = Image
-firstFileName = None
-firstOverFileName = None
-secondFileName = None
-secondOverFileName = None
-target_num = 1
 
 def circle_draw(draw_image, image, x_y_r, target_num):
     global overlap_image
@@ -376,7 +374,6 @@ class Ui_MainWindow(QWidget):
         smaller_pixmap = pix.scaled(280, 280)
         print(type(smaller_pixmap))
         self.resultImage.setPixmap(smaller_pixmap)
-
         solution()
 
     def saveImage(self):
@@ -395,11 +392,9 @@ class Ui_MainWindow(QWidget):
         self.lblTargetNum.setText(_translate("MainWindow", "지표설정"))
         for i in range(1,22):
             self.comboTarget.setItemText(i - 1, _translate("MainWindow", str(i) ))
-
         self.comboTarget.currentIndexChanged.connect(self.selectionChanged)
         self.lblFirstChar.setText(_translate("MainWindow", "첫번째 문자"))
         self.btnFirst.setText(_translate("MainWindow", "찾아보기"))
-
         self.btnFirstOver.setText(_translate("MainWindow", "찾아보기"))
         self.lblFirstOver.setText(_translate("MainWindow", "겹침 문자"))
         self.lblSndOver.setText(_translate("MainWindow", "겹침 문자"))
@@ -417,7 +412,6 @@ class Ui_MainWindow(QWidget):
         self.btnSndOver.clicked.connect(self.openFileDialog4)
         self.btnTrans.clicked.connect(self.transpose)
         self.btnSave.clicked.connect(self.saveImage)
-
 
 
 def main():
