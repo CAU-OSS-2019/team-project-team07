@@ -11,6 +11,7 @@ from PyQt5.QtWidgets import QWidget, QApplication, QFileDialog, QPushButton
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QGraphicsItem
 from PIL.ImageQt import ImageQt
+import PyQt5
 
 try:
     from scipy.spatial import cKDTree as KDTree
@@ -45,7 +46,7 @@ def circle_intersection(x1_y1_r1, x2_y2_r2):
     x2, y2, r2 = x2_y2_r2
     return (x2 - x1)**2 + (y2 - y1)**2 < 1.13*(r2 + r1)**2
 
-
+image2 = None
 first_flag = True
 overlap_image = Image
 second_image = Image
@@ -55,6 +56,7 @@ firstOverFileName = None
 secondFileName = None
 secondOverFileName = None
 target_num = 1
+
 def circle_draw(draw_image, image, x_y_r, target_num):
     global overlap_image
     global second_image
@@ -235,11 +237,8 @@ class Ui_MainWindow(QWidget):
         self.btnSave = QtWidgets.QPushButton(self.groupBox_2)
         self.btnSave.setGeometry(QtCore.QRect(200, 380, 93, 28))
         self.btnSave.setObjectName("btnSave")
-        # self.graphicsView = QtWidgets.QGraphicsView(self.groupBox_2)
-        # self.graphicsView.setGeometry(QtCore.QRect(10, 30, 281, 331))
-        # self.graphicsView.setObjectName("graphicsView")
         self.resultImage = QtWidgets.QLabel(self.groupBox_2)
-        self.resultImage.setGeometry(QtCore.QRect(10, 30, 281, 331))
+        self.resultImage.setGeometry(QtCore.QRect(10, 30, 280, 330))
         self.resultImage.setObjectName("resultImage")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -319,6 +318,7 @@ class Ui_MainWindow(QWidget):
             self.txtSndOver.setText(fileName)
 
     def transpose(self):
+        global image2
         global target_num
         target_num, image = setting()
         image2 = Image.new('RGB', image.size, BACKGROUND)
@@ -369,24 +369,24 @@ class Ui_MainWindow(QWidget):
         except (KeyboardInterrupt, SystemExit):
             pass
 
-        image2.show()
-        # print(type(image2))
-        # qim = ImageQt(image2)
-        # pix = QtGui.QPixmap.fromImage(qim)
-        # print(type(pix))
-        # self.resultImage.setPixmap(pix)
-
-
-        # show the generated test image(result)
-        #
-        # output_dir = "./sample_output"
-        # if not os.path.exists(output_dir):
-        #     os.makedirs(output_dir)
-        # image2.save(os.path.join(output_dir, 'new_colorblindness_sample.png'))
-        # save the generated test image(result)
+        # image2.show()
+        print(type(image2))
+        qim = ImageQt(image2)
+        pix = QtGui.QPixmap.fromImage(qim)
+        smaller_pixmap = pix.scaled(280, 280)
+        print(type(smaller_pixmap))
+        self.resultImage.setPixmap(smaller_pixmap)
 
         solution()
 
+    def saveImage(self):
+        global image2
+
+        output_dir = "./sample_output"
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
+        image2.save(os.path.join(output_dir, 'new_colorblindness_sample.png'))
+        print("저장되었습니다")
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -416,6 +416,8 @@ class Ui_MainWindow(QWidget):
         self.btnSnd.clicked.connect(self.openFileDialog3)
         self.btnSndOver.clicked.connect(self.openFileDialog4)
         self.btnTrans.clicked.connect(self.transpose)
+        self.btnSave.clicked.connect(self.saveImage)
+
 
 
 def main():
