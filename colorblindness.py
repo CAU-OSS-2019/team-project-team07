@@ -7,7 +7,7 @@ from view import *
 from draw_target import *
 from make_solution import *
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QWidget, QApplication, QFileDialog, QPushButton
+from PyQt5.QtWidgets import QWidget, QApplication, QFileDialog, QPushButton, QProgressBar,QDialog
 from PIL.ImageQt import ImageQt
 
 try:
@@ -30,6 +30,7 @@ firstOverFileName = None
 secondFileName = None
 secondOverFileName = None
 target_num = 1
+sol = None
 
 def generate_circle(image_width, image_height, min_diameter, max_diameter):
     # define the location of circle, return : circle(x-coordinate, y-coordinate, radius)
@@ -118,6 +119,7 @@ def setting():
     global secondOverFileName
     global target_num
 
+
     sol_table[0] = target_num
     first_image = shortcut('first',firstFileName)
     images.append(first_image)
@@ -177,6 +179,11 @@ class Ui_MainWindow(Ui_SubWindow):
             self.btnFirstOver.setEnabled(False)
             self.btnSndOver.setEnabled(False)
 
+
+    def btnClickEventSolDialog(self):
+        print("123123")
+
+
     def btnClickEventOpenFileDialog1(self):
         global firstFileName
         fileName, _ = QFileDialog.getOpenFileName(self)
@@ -214,6 +221,7 @@ class Ui_MainWindow(Ui_SubWindow):
     def btnClickEventTranspose(self):
         global image2
         global target_num
+        global sol
         target_num, image = setting()
         image2 = Image.new('RGB', image.size, BACKGROUND)
         draw_image = ImageDraw.Draw(image2)
@@ -256,8 +264,8 @@ class Ui_MainWindow(Ui_SubWindow):
                         tries += 1
                         circle = generate_circle(width, height, min_diameter, max_diameter)
 
-                print('{}/{} {}'.format(i, TOTAL_CIRCLES, tries))
-
+                # print('{}/{} {}'.format(i, TOTAL_CIRCLES, tries))
+                self.progressBar.setValue((i+1))
                 circles.append(circle)
                 circle_draw(draw_image, image, circle, target_num)
         except (KeyboardInterrupt, SystemExit):
@@ -270,7 +278,7 @@ class Ui_MainWindow(Ui_SubWindow):
         smaller_pixmap = pix.scaled(280, 280)
         print(type(smaller_pixmap))
         self.resultImage.setPixmap(smaller_pixmap)
-        solution()
+        sol = solution()
 
     def btnClickEventSaveImage(self):
         global image2
@@ -288,6 +296,7 @@ def main():
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
+
     sys.exit(app.exec_())
 
 

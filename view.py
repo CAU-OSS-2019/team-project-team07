@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QWidget,  QProgressBar
 
 class Ui_SubWindow(QWidget):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(693, 490)
+        MainWindow.resize(693, 460)
         MainWindow.setStyleSheet("QGroupBox {\n"
                                     "    border: 1px solid gray;\n"
                                     "    border-radius: 9px;\n"
@@ -85,11 +85,21 @@ class Ui_SubWindow(QWidget):
         self.lblSndChar.setGeometry(QtCore.QRect(10, 230, 81, 16))
         self.lblSndChar.setObjectName("lblSndChar")
         self.btnTrans = QtWidgets.QPushButton(self.groupBox)
+        # self.btnTrans.setGeometry(QtCore.QRect(10, 380, 93, 28))
         self.btnTrans.setGeometry(QtCore.QRect(230, 380, 93, 28))
+
         self.btnTrans.setObjectName("btnTrans")
+        self.progressBar = QProgressBar(self.groupBox)
+        # self.progressBar.setGeometry(QtCore.QRect(110, 380, 220, 30))
+        self.progressBar.setGeometry(QtCore.QRect(10, 380, 220, 30))
+
+        self.progressBar.setMaximum(500)
         self.groupBox_2 = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox_2.setGeometry(QtCore.QRect(370, 10, 301, 421))
         self.groupBox_2.setObjectName("groupBox_2")
+        self.btnSol = QtWidgets.QPushButton(self.groupBox_2)
+        self.btnSol.setGeometry(QtCore.QRect(10, 380, 93, 28))
+        self.btnSol.setObjectName("btnSol")
         self.btnSave = QtWidgets.QPushButton(self.groupBox_2)
         self.btnSave.setGeometry(QtCore.QRect(200, 380, 93, 28))
         self.btnSave.setObjectName("btnSave")
@@ -104,6 +114,7 @@ class Ui_SubWindow(QWidget):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
+
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -128,6 +139,7 @@ class Ui_SubWindow(QWidget):
         self.btnTrans.setText(_translate("MainWindow", "변환"))
         self.groupBox_2.setTitle(_translate("MainWindow", "result"))
         self.btnSave.setText(_translate("MainWindow", "저장"))
+        self.btnSol.setText(_translate("MainWindow", "결과"))
         self.btnFirstOver.setEnabled(False)
         self.btnSndOver.setEnabled(False)
         self.btnFirst.clicked.connect(self.btnClickEventOpenFileDialog1)
@@ -136,3 +148,4 @@ class Ui_SubWindow(QWidget):
         self.btnSndOver.clicked.connect(self.btnClickEventOpenFileDialog4)
         self.btnTrans.clicked.connect(self.btnClickEventTranspose)
         self.btnSave.clicked.connect(self.btnClickEventSaveImage)
+        self.btnSol.clicked.connect(self.btnClickEventSolDialog)
