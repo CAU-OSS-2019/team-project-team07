@@ -75,7 +75,6 @@ def circle_draw(draw_image, image, x_y_r, target_num):
     elif target_num in [19, 20, 21]:
         circle_draw_type_7th(draw_image, image, second_image, x_y_r, target_num)
     else:
-        # print('1~21 사이의 숫자를 입력해주세요')
         sys.exit()
 
 
@@ -145,6 +144,8 @@ def setting():
 class Ui_MainWindow(Ui_SubWindow):
 
     def checkError(self):
+        # A method to check if there are image files that fit the target. if not, return true, return : boolean
+
         global firstFileName
         global firstOverFileName
         global secondFileName
@@ -164,13 +165,15 @@ class Ui_MainWindow(Ui_SubWindow):
                 return True
         return False
 
+
     def selectionChanged(self):
+        #Listener that occurs when changed the target
         global target_num
         global firstFileName
         global firstOverFileName
         global secondFileName
         global secondOverFileName
-
+        #default is target 1 so all buttons set enable
         self.btnFirst.setEnabled(True)
         self.btnFirstOver.setEnabled(True)
         self.btnSnd.setEnabled(True)
@@ -210,6 +213,8 @@ class Ui_MainWindow(Ui_SubWindow):
 
 
     def btnClickEventSolDialog(self):
+        #Listener that occurs when clicked result btn
+
         global sol
         dlg = solutionDialog()
         dlg.setupUI(sol)
@@ -217,22 +222,26 @@ class Ui_MainWindow(Ui_SubWindow):
 
 
     def btnClickEventOpenFileDialog1(self):
+        #Listener that occurs when clicked first character Browser
+
         global firstFileName
         fileName, _ = QFileDialog.getOpenFileName(self)
         if fileName:
             firstFileName = fileName.split('/')[-1].split('.')[0]
             self.txtFirst.setText(fileName)
 
-
     def btnClickEventOpenFileDialog2(self):
+        #Listener that occurs when clicked first overlap character Browser
+
         global firstOverFileName
         fileName, _ = QFileDialog.getOpenFileName(self)
         if fileName:
             firstOverFileName = fileName.split('/')[-1].split('.')[0]
             self.txtFirstOver.setText(fileName)
 
-
     def btnClickEventOpenFileDialog3(self):
+        #Listener that occurs when clicked second character Browser
+
         global secondFileName
         fileName, _ = QFileDialog.getOpenFileName(self)
         if fileName:
@@ -240,6 +249,8 @@ class Ui_MainWindow(Ui_SubWindow):
             self.txtSnd.setText(fileName)
 
     def btnClickEventOpenFileDialog4(self):
+        #Listener that occurs when clicked second overlap character Browser
+
         global secondOverFileName
         fileName, _ = QFileDialog.getOpenFileName(self)
         if fileName:
@@ -247,6 +258,8 @@ class Ui_MainWindow(Ui_SubWindow):
             self.txtSndOver.setText(fileName)
 
     def btnClickEventTranspose(self):
+        #Listener that occurs when clicked create button
+
         global images
         global image2
         global target_num
@@ -309,6 +322,8 @@ class Ui_MainWindow(Ui_SubWindow):
         sol = solution()
 
     def btnClickEventSaveImage(self):
+        #Listener that occurs when clicked save button
+
         global image2
         if image2 == None:
             QMessageBox.warning(self, "error", "please create image.")

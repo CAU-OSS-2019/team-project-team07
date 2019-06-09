@@ -109,7 +109,6 @@ class Ui_SubWindow(QWidget):
         self.btnTrans = QtWidgets.QPushButton(self.groupBox)
         # self.btnTrans.setGeometry(QtCore.QRect(10, 380, 93, 28))
         self.btnTrans.setGeometry(QtCore.QRect(230, 380, 93, 28))
-
         self.btnTrans.setObjectName("btnTrans")
         self.progressBar = QProgressBar(self.groupBox)
         # self.progressBar.setGeometry(QtCore.QRect(110, 380, 220, 30))
