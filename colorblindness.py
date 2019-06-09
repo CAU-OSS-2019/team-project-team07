@@ -149,13 +149,48 @@ def setting():
 
 class Ui_MainWindow(Ui_SubWindow):
 
+
+    def checkError(self):
+        global firstFileName
+        global firstOverFileName
+        global secondFileName
+        global secondOverFileName
+
+        if self.btnFirst.isEnabled():
+            if firstFileName == None:
+                return True
+        if self.btnFirstOver.isEnabled():
+            if firstOverFileName == None:
+                return True
+        if self.btnSnd.isEnabled():
+            if secondFileName == None:
+                return True
+        if self.btnSndOver.isEnabled():
+            if secondOverFileName == None:
+                return True
+        return False
+
     def selectionChanged(self):
         global target_num
+        global firstFileName
+        global firstOverFileName
+        global secondFileName
+        global secondOverFileName
+
         self.btnFirst.setEnabled(True)
         self.btnFirstOver.setEnabled(True)
         self.btnSnd.setEnabled(True)
         self.btnSndOver.setEnabled(True)
 
+        firstFileName = None
+        firstOverFileName = None
+        secondFileName = None
+        secondOverFileName = None
+        self.txtFirst.setText("")
+        self.txtFirstOver.setText("")
+        self.txtSnd.setText("")
+        self.txtSndOver.setText("")
+        self.progressBar.setValue(0)
         target_num = int(self.comboTarget.currentText())
         if target_num in [2, 4, 11]:
             self.btnSnd.setEnabled(False)
@@ -192,7 +227,7 @@ class Ui_MainWindow(Ui_SubWindow):
         fileName, _ = QFileDialog.getOpenFileName(self)
         if fileName:
             firstFileName = fileName.split('/')[-1].split('.')[0]
-            self.txtfirst.setText(fileName)
+            self.txtFirst.setText(fileName)
 
 
     def btnClickEventOpenFileDialog2(self):
@@ -218,13 +253,19 @@ class Ui_MainWindow(Ui_SubWindow):
             self.txtSndOver.setText(fileName)
 
     def btnClickEventTranspose(self):
+        global images
         global image2
         global target_num
         global sol
+        if self.checkError() == True:
+            QMessageBox.warning(self, "error", "please input images.")
+            return 0
         target_num, image = setting()
+
+
         image2 = Image.new('RGB', image.size, BACKGROUND)
         draw_image = ImageDraw.Draw(image2)
-        global images
+
         width, height = image.size
 
         min_diameter = height / 64
@@ -279,11 +320,14 @@ class Ui_MainWindow(Ui_SubWindow):
 
     def btnClickEventSaveImage(self):
         global image2
+        if image2 == None:
+            QMessageBox.warning(self, "error", "please create image.")
+            return 0
         output_dir = "./sample_output"
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
         image2.save(os.path.join(output_dir, 'new_colorblindness_sample.png'))
-        QMessageBox.information(self, "저장", "저장되었습니다.")
+        QMessageBox.information(self, "save", "saved.")
 
 
 
