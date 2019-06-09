@@ -76,7 +76,7 @@ def circle_draw(draw_image, image, x_y_r, target_num):
     elif target_num in [19, 20, 21]:
         circle_draw_type_7th(draw_image, image, second_image, x_y_r, target_num)
     else:
-        print('1~21 사이의 숫자를 입력해주세요')
+        # print('1~21 사이의 숫자를 입력해주세요')
         sys.exit()
 
 
@@ -143,7 +143,7 @@ def setting():
         second_image = shortcut('second',secondFileName)
         images.append(second_image)
     else:
-        print('1~21 사이의 숫자를 입력해주세요')
+        # print('1~21 사이의 숫자를 입력해주세요')
         sys.exit()
     return target_num, first_image
 
@@ -157,7 +157,6 @@ class Ui_MainWindow(Ui_SubWindow):
         self.btnSndOver.setEnabled(True)
 
         target_num = int(self.comboTarget.currentText())
-        print(target_num)
         if target_num in [2, 4, 11]:
             self.btnSnd.setEnabled(False)
             self.btnSndOver.setEnabled(False)
@@ -191,7 +190,6 @@ class Ui_MainWindow(Ui_SubWindow):
     def btnClickEventOpenFileDialog1(self):
         global firstFileName
         fileName, _ = QFileDialog.getOpenFileName(self)
-        print(fileName)
         if fileName:
             firstFileName = fileName.split('/')[-1].split('.')[0]
             self.txtfirst.setText(fileName)
@@ -200,7 +198,6 @@ class Ui_MainWindow(Ui_SubWindow):
     def btnClickEventOpenFileDialog2(self):
         global firstOverFileName
         fileName, _ = QFileDialog.getOpenFileName(self)
-        print(fileName)
         if fileName:
             firstOverFileName = fileName.split('/')[-1].split('.')[0]
             self.txtFirstOver.setText(fileName)
@@ -209,7 +206,6 @@ class Ui_MainWindow(Ui_SubWindow):
     def btnClickEventOpenFileDialog3(self):
         global secondFileName
         fileName, _ = QFileDialog.getOpenFileName(self)
-        print(fileName)
         if fileName:
             secondFileName = fileName.split('/')[-1].split('.')[0]
             self.txtSnd.setText(fileName)
@@ -217,7 +213,6 @@ class Ui_MainWindow(Ui_SubWindow):
     def btnClickEventOpenFileDialog4(self):
         global secondOverFileName
         fileName, _ = QFileDialog.getOpenFileName(self)
-
         if fileName:
             secondOverFileName = fileName.split('/')[-1].split('.')[0]
             self.txtSndOver.setText(fileName)
