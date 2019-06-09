@@ -20,18 +20,17 @@ except ImportError:
 
 TOTAL_CIRCLES = 500
 image2 = None
-
 first_flag = True
 overlap_image = Image
 second_image = Image
 second_overlap_image = Image
-
 firstFileName = None
 firstOverFileName = None
 secondFileName = None
 secondOverFileName = None
 target_num = 1
 sol = None
+dic = {'first': 1, 'second': 2, 'overlap': 3, 'second overlap': 4, 'filter': 3}
 
 def generate_circle(image_width, image_height, min_diameter, max_diameter):
     # define the location of circle, return : circle(x-coordinate, y-coordinate, radius)
@@ -96,9 +95,6 @@ def bounded_check(image, x_y_r):
     return True
 
 
-dic = {'first': 1, 'second': 2, 'overlap': 3, 'second overlap': 4, 'filter': 3}
-
-
 def shortcut(keyword, tmp):
 
     name = tmp
@@ -119,7 +115,6 @@ def setting():
     global secondFileName
     global secondOverFileName
     global target_num
-
 
     sol_table[0] = target_num
     first_image = shortcut('first',firstFileName)
@@ -143,12 +138,11 @@ def setting():
         second_image = shortcut('second',secondFileName)
         images.append(second_image)
     else:
-        # print('1~21 사이의 숫자를 입력해주세요')
         sys.exit()
+
     return target_num, first_image
 
 class Ui_MainWindow(Ui_SubWindow):
-
 
     def checkError(self):
         global firstFileName
@@ -257,21 +251,18 @@ class Ui_MainWindow(Ui_SubWindow):
         global image2
         global target_num
         global sol
+
         if self.checkError() == True:
             QMessageBox.warning(self, "error", "please input images.")
             return 0
+
         target_num, image = setting()
-
-
         image2 = Image.new('RGB', image.size, BACKGROUND)
         draw_image = ImageDraw.Draw(image2)
-
         width, height = image.size
-
         min_diameter = height / 64
         max_diameter = height / 16
         ignore = False
-
         circle = generate_circle(width, height, min_diameter, max_diameter)
         circles = [circle]
         circle_draw(draw_image, image, circle, target_num)
@@ -311,7 +302,6 @@ class Ui_MainWindow(Ui_SubWindow):
         except (KeyboardInterrupt, SystemExit):
             pass
 
-        # image2.show()
         qim = ImageQt(image2)
         pix = QtGui.QPixmap.fromImage(qim)
         smaller_pixmap = pix.scaled(280, 280)
@@ -323,6 +313,7 @@ class Ui_MainWindow(Ui_SubWindow):
         if image2 == None:
             QMessageBox.warning(self, "error", "please create image.")
             return 0
+
         output_dir = "./sample_output"
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
