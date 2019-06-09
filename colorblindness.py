@@ -6,9 +6,10 @@ import math
 from view import *
 from draw_target import *
 from make_solution import *
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QWidget, QApplication, QFileDialog, QPushButton, QProgressBar,QDialog
+from PyQt5 import  QtGui, QtWidgets
+from PyQt5.QtWidgets import QFileDialog, QMessageBox
 from PIL.ImageQt import ImageQt
+
 
 try:
     from scipy.spatial import cKDTree as KDTree
@@ -181,7 +182,10 @@ class Ui_MainWindow(Ui_SubWindow):
 
 
     def btnClickEventSolDialog(self):
-        print("123123")
+        global sol
+        dlg = solutionDialog()
+        dlg.setupUI(sol)
+        dlg.exec_()
 
 
     def btnClickEventOpenFileDialog1(self):
@@ -272,22 +276,20 @@ class Ui_MainWindow(Ui_SubWindow):
             pass
 
         # image2.show()
-        print(type(image2))
         qim = ImageQt(image2)
         pix = QtGui.QPixmap.fromImage(qim)
         smaller_pixmap = pix.scaled(280, 280)
-        print(type(smaller_pixmap))
         self.resultImage.setPixmap(smaller_pixmap)
         sol = solution()
 
     def btnClickEventSaveImage(self):
         global image2
-
         output_dir = "./sample_output"
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
         image2.save(os.path.join(output_dir, 'new_colorblindness_sample.png'))
-        print("저장되었습니다")
+        QMessageBox.information(self, "저장", "저장되었습니다.")
+
 
 
 def main():
@@ -296,7 +298,6 @@ def main():
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
-
     sys.exit(app.exec_())
 
 

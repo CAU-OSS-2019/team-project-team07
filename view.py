@@ -1,6 +1,28 @@
 # -*- coding: utf-8 -*-
 from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import QWidget,  QProgressBar
+from PyQt5.QtWidgets import *
+
+class solutionDialog(QDialog):
+    def __init__(self):
+        super().__init__()
+
+
+    def setupUI(self, sol):
+        self.setGeometry(800, 400, 300, 300)
+        self.setWindowTitle("결과")
+        self.b = QPlainTextEdit(self)
+        self.b.insertPlainText(sol)
+        self.b.setGeometry(10, 10, 280, 240)
+        self.b.setReadOnly(True)
+        self.closeBtn = QtWidgets.QPushButton(self)
+        self.closeBtn.setGeometry(QtCore.QRect(200, 260, 90, 28))
+        self.closeBtn.setText("닫기")
+        self.closeBtn.clicked.connect(self.closeButtonClicked)
+
+
+    def closeButtonClicked(self):
+        self.close()
+
 
 class Ui_SubWindow(QWidget):
     def setupUi(self, MainWindow):
@@ -114,8 +136,6 @@ class Ui_SubWindow(QWidget):
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-
-
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
