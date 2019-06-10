@@ -25,8 +25,8 @@ COLORS_ON = [
         [color(0x7E8B5F), color(0x899668), color(0xA0AA6D)],  # green
         [color(0x9E635B), color(0xC5817E), color(0xEAA095)],  # pink
     ],  # number5
-    [color(0x8A6C46), color(0xB29261), color(0xCCA36B)],  # brown_number6
-    [color(0x8A6C46), color(0xB29261), color(0xCCA36B)],  # brown_number7
+    [color(0xccb186), color(0xe0bb84), color(0xfcce81)],  # brown_number6
+    [color(0xccb186), color(0xe0bb84), color(0xfcce81)],  # brown_number7
     [color(0x7E8B5F), color(0x899668), color(0xA0AA6D)],  # green_number8
     [
         [color(0x747570)],
@@ -89,18 +89,18 @@ COLORS_OFF = [
     ],  # gray_number1
     [color(0x768A57), color(0xADC277)],  # number2
     [color(0x8ea068), color(0x92a361), color(0xc1db7a)],  # green_number3
-    [color(0xa0794e), color(0xc6a075), color(0xffaf3d)],  # brown_number4
-    [color(0x8A6C46), color(0xB29261), color(0xCCA36B)],  # brown_number5
+    [color(0xccb186), color(0xe0bb84), color(0xfcce81)],  # brown_number4
+    [color(0xccb186), color(0xe0bb84), color(0xfcce81)],  # brown_number5
     [
-        [color(0x60703F), color(0x6F7F41), color(0x8DA253)],  # green
+        [color(0x8ea068), color(0x92a361), color(0xc1db7a)],  # green
         [color(0x418377), color(0x5FA398), color(0x86B1A7)]  # cyan
     ],  # number6
     [
-        [color(0x60703F), color(0x6F7F41), color(0x8DA253)],  # green
+        [color(0x8ea068), color(0x92a361), color(0xc1db7a)],  # green
         [color(0x418377), color(0x5FA398), color(0x86B1A7)]  # cyan
     ],  # number7
     [
-        [color(0x8A6C46), color(0xB29261), color(0xCCA36B)],  # brown
+        [color(0xccb186), color(0xe0bb84), color(0xfcce81)],  # brown
         [color(0x9E635B), color(0xC5817E), color(0xEAA095)]  # pink
     ],  # number8
     [
@@ -110,7 +110,7 @@ COLORS_OFF = [
     [color(0x464847), color(0x6A6A6A), color(0x969799)],  # gray_number10
     [color(0x8A6C46), color(0xB29261), color(0xCCA36B)],  # brown_number11
     [
-        [color(0x62937E), color(0x78AF9C), color(0x97C4B0)],  # green
+        [color(0x62937E), color(0x96d1bb), color(0xb3e0cc)],  # green
         [color(0x418377), color(0x5FA398), color(0x86B1A7)]  # cyan
     ],  # number12
     [color(0x464847), color(0x6A6A6A), color(0x969799)],  # gray_number13

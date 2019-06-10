@@ -19,14 +19,14 @@ team-project-team07 created by GitHub Classroom
 ### Example Flow
 | 과정 | 이미지 |
 |---|---|
-| 1. 이미지 입력 | ![](readme_images/readmeimage1.png){: width="300" height="300"} |
-| 2. 이미지 윤곽선 추출 | ![](readme_images/readmeimage2.png){: width="300" height="300"} |
-| 3. 지표의 타입 지정 | ex. 제 1표 |
-| 4. Generating | ![](readme_images/readmeimage3.png){: width="300" height="300"} |
+| 1. 이미지 입력 | <img src="readme_images/readmeimage1.png" width="300" height="300"> |
+| 2. 지표의 타입 지정 | ex. 제 1표 |
+| 3. Generating | <img src="readme_images/readmeimage3.png" width="300" height="300"> |
 
 이해를 돕기 위한 참고용 표로 지표의 종류에 따라 달라질 수 있음.
 
 ## Code Manual
+We can generate a image about given target number & input numbers(or characters)
 ### Before Start (Packages)
 1. You have to install it.
 ```
@@ -41,12 +41,33 @@ team-project-team07 created by GitHub Classroom
 ### How to use
 > Generate a Image.
 >```
->  python colorblindness.py imagename target_num image image(Optional)
+>  python colorblindness.py
 >```
->1. 'imagename' is name of a created image.
->2. You can put 1 to 11 on 'target_num' for indicators.
->3. You have to put a directory of inputed image on 'image'
->4. (Optional) If you want to merge two images for colorblindness testing, you have to put a directory of the second image.
+>```
+>  please input target number (1 ~ 21) : 
+>```
+>You can put 1 to 21 for indicators about colorblindness testing.
+>```
+>  input first image file name : 
+>```
+>You can put 0 ~ 9 or A ~ Z for the main character(number).
+>```
+>  (Optional) input second image file name : 
+>```
+>This option appears when program needs double figures. You can use as same as first image.
+>```
+>  input overlap image file name : 
+>```
+>You can put 0 ~ 9 or A ~ Z for the confusing character(number).
+>```
+>  (Optional) input second overlap image file name : 
+>```
+>This option appears when program needs double figures. You can use as same as overlap image.
+
+## Under development
+1. GUI Programming
+2. Make a generate algorithm adjustment.
+3. Ajusting color values.
 
 ## License
 GNU General Public License v3.0
