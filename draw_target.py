@@ -13,6 +13,12 @@ resize_overlap_image2 = Image
 images = []
 
 
+def reset_first_flag():
+    # setting first_flag to True first time
+    global first_flag
+    first_flag = True
+
+
 def overlaps_motive(image, x_y_r):
     # check whether or not circle is overlapped, return : boolean
     x, y, r = x_y_r
