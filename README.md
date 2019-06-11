@@ -36,7 +36,11 @@ We can generate a image about given target number & input numbers(or characters)
 ```  
   pip install pillow
 ```
-3. Before start, you have to include images you want in the directory.
+3. For GUI, you have to install PyQt5. (Only in python3.x)
+```
+  pip install PyQt5
+```
+4. Before start, you have to include images you want in the directory.
 
 ### How to use
 > Generate a Image.
