@@ -6,7 +6,7 @@ import math
 from view import *
 from draw_target import *
 from make_solution import *
-from PyQt5 import  QtGui, QtWidgets
+from PyQt5 import QtGui, QtWidgets
 from PyQt5.QtWidgets import QFileDialog, QMessageBox
 from PIL.ImageQt import ImageQt
 
@@ -20,7 +20,6 @@ except ImportError:
 
 TOTAL_CIRCLES = 500
 image2 = None
-first_flag = True
 overlap_image = Image
 second_image = Image
 second_overlap_image = Image
@@ -31,6 +30,7 @@ secondOverFileName = None
 target_num = 1
 sol = None
 dic = {'first': 1, 'second': 2, 'overlap': 3, 'second overlap': 4, 'filter': 3}
+
 
 def generate_circle(image_width, image_height, min_diameter, max_diameter):
     # define the location of circle, return : circle(x-coordinate, y-coordinate, radius)
@@ -115,31 +115,33 @@ def setting():
     global secondOverFileName
     global target_num
 
+    reset_first_flag()
     sol_table[0] = target_num
-    first_image = shortcut('first',firstFileName)
+    first_image = shortcut('first', firstFileName)
     images.append(first_image)
     if target_num in [2, 4, 11]:
-        overlap_image = shortcut('overlap',firstOverFileName)
+        overlap_image = shortcut('overlap', firstOverFileName)
         images.append(overlap_image)
     elif target_num in [3, 5]:
-        second_image = shortcut('second',secondFileName)
-        overlap_image = shortcut('overlap',firstOverFileName)
-        second_overlap_image = shortcut('second overlap',secondOverFileName)
+        second_image = shortcut('second', secondFileName)
+        overlap_image = shortcut('overlap', firstOverFileName)
+        second_overlap_image = shortcut('second overlap', secondOverFileName)
         del images[0]
     elif target_num in [6, 8, 12]:
         pass
     elif target_num in [1, 7, 10, 13, 14, 15, 16, 17, 18]:
-        second_image = shortcut('second',secondFileName)
+        second_image = shortcut('second', secondFileName)
         del images[0]
     elif target_num in [9]:
-        overlap_image = shortcut('filter',firstOverFileName)
+        overlap_image = shortcut('filter', firstOverFileName)
     elif target_num in [19, 20, 21]:
-        second_image = shortcut('second',secondFileName)
+        second_image = shortcut('second', secondFileName)
         images.append(second_image)
     else:
         sys.exit()
 
     return target_num, first_image
+
 
 class Ui_MainWindow(Ui_SubWindow):
 
@@ -165,15 +167,14 @@ class Ui_MainWindow(Ui_SubWindow):
                 return True
         return False
 
-
     def selectionChanged(self):
-        #Listener that occurs when changed the target
+        # Listener that occurs when changed the target
         global target_num
         global firstFileName
         global firstOverFileName
         global secondFileName
         global secondOverFileName
-        #default is target 1 so all buttons set enable
+        # default is target 1 so all buttons set enable
         self.btnFirst.setEnabled(True)
         self.btnFirstOver.setEnabled(True)
         self.btnSnd.setEnabled(True)
@@ -211,18 +212,16 @@ class Ui_MainWindow(Ui_SubWindow):
             self.btnFirstOver.setEnabled(False)
             self.btnSndOver.setEnabled(False)
 
-
     def btnClickEventSolDialog(self):
-        #Listener that occurs when clicked result btn
+        # Listener that occurs when clicked result btn
 
         global sol
         dlg = solutionDialog()
         dlg.setupUI(sol)
         dlg.exec_()
 
-
     def btnClickEventOpenFileDialog1(self):
-        #Listener that occurs when clicked first character Browser
+        # Listener that occurs when clicked first character Browser
 
         global firstFileName
         fileName, _ = QFileDialog.getOpenFileName(self)
@@ -231,7 +230,7 @@ class Ui_MainWindow(Ui_SubWindow):
             self.txtFirst.setText(fileName)
 
     def btnClickEventOpenFileDialog2(self):
-        #Listener that occurs when clicked first overlap character Browser
+        # Listener that occurs when clicked first overlap character Browser
 
         global firstOverFileName
         fileName, _ = QFileDialog.getOpenFileName(self)
@@ -240,7 +239,7 @@ class Ui_MainWindow(Ui_SubWindow):
             self.txtFirstOver.setText(fileName)
 
     def btnClickEventOpenFileDialog3(self):
-        #Listener that occurs when clicked second character Browser
+        # Listener that occurs when clicked second character Browser
 
         global secondFileName
         fileName, _ = QFileDialog.getOpenFileName(self)
@@ -249,7 +248,7 @@ class Ui_MainWindow(Ui_SubWindow):
             self.txtSnd.setText(fileName)
 
     def btnClickEventOpenFileDialog4(self):
-        #Listener that occurs when clicked second overlap character Browser
+        # Listener that occurs when clicked second overlap character Browser
 
         global secondOverFileName
         fileName, _ = QFileDialog.getOpenFileName(self)
@@ -258,7 +257,7 @@ class Ui_MainWindow(Ui_SubWindow):
             self.txtSndOver.setText(fileName)
 
     def btnClickEventTranspose(self):
-        #Listener that occurs when clicked create button
+        # Listener that occurs when clicked create button
 
         global images
         global image2
@@ -322,7 +321,7 @@ class Ui_MainWindow(Ui_SubWindow):
         sol = solution()
 
     def btnClickEventSaveImage(self):
-        #Listener that occurs when clicked save button
+        # Listener that occurs when clicked save button
 
         global image2
         if image2 == None:
@@ -336,7 +335,6 @@ class Ui_MainWindow(Ui_SubWindow):
         QMessageBox.information(self, "save", "saved.")
 
 
-
 def main():
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
@@ -344,7 +342,6 @@ def main():
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
-
 
 
 if __name__ == '__main__':
