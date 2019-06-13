@@ -19,6 +19,12 @@ def reset_first_flag():
     first_flag = True
 
 
+def reset_image_array():
+    # setting images array clear
+    for i in range(len(images)):
+        del images[0]
+
+
 def overlaps_motive(image, x_y_r):
     # check whether or not circle is overlapped, return : boolean
     x, y, r = x_y_r
