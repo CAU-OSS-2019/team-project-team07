@@ -116,6 +116,7 @@ def setting():
     global target_num
 
     reset_first_flag()
+    reset_image_array()
     sol_table[0] = target_num
     first_image = shortcut('first', firstFileName)
     images.append(first_image)
