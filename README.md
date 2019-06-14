@@ -43,11 +43,11 @@ We can generate a image about given target number & input numbers(or characters)
 4. Before start, you have to include images you want in the directory.
 
 ### How to use
+<img src="readme_images/readmeimage1.png" width="400" height="400"> 
 > Generate a Image.
 >```
 >  python colorblindness.py
 >```
-<img src="readme_images/readmeimage1.png" width="400" height="400">
 >```
 >  please choose target number (1 ~ 21) : 
 >```
