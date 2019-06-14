@@ -43,33 +43,35 @@ We can generate a image about given target number & input numbers(or characters)
 4. Before start, you have to include images you want in the directory.
 
 ### How to use
+<img src="readme_images/readmeimage4.jpg"> 
+
 > Generate a Image.
 >```
 >  python colorblindness.py
 >```
 >```
->  please input target number (1 ~ 21) : 
+>  please choose target number (1 ~ 21) : 
 >```
->You can put 1 to 21 for indicators about colorblindness testing.
+>You can choose 1 to 21 for indicators about colorblindness testing.
 >```
->  input first image file name : 
+>  input first image file location : 
 >```
 >You can put 0 ~ 9 or A ~ Z for the main character(number).
 >```
->  (Optional) input second image file name : 
+>  (Optional) input second image file location : 
 >```
 >This option appears when program needs double figures. You can use as same as first image.
 >```
->  input overlap image file name : 
+>  input overlap image file location : 
 >```
 >You can put 0 ~ 9 or A ~ Z for the confusing character(number).
 >```
->  (Optional) input second overlap image file name : 
+>  (Optional) input second overlap image file location : 
 >```
 >This option appears when program needs double figures. You can use as same as overlap image.
 
 ## Under development
-1. GUI Programming
+1. GUI Programming - It's released now.
 2. Make a generate algorithm adjustment.
 3. Ajusting color values.
 
