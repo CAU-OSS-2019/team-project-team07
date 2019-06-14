@@ -49,6 +49,7 @@ We can generate a image about given target number & input numbers(or characters)
 >```
 ><img src="readme_images/readmeimage1.png" width="400" height="400">
 >```
+>```
 >  please choose target number (1 ~ 21) : 
 >```
 >You can choose 1 to 21 for indicators about colorblindness testing.
