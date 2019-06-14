@@ -43,7 +43,7 @@ We can generate a image about given target number & input numbers(or characters)
 4. Before start, you have to include images you want in the directory.
 
 ### How to use
-<img src="readme_images/readmeimage4.jpg" width="400"> 
+<img src="readme_images/readmeimage4.jpg"> 
 
 > Generate a Image.
 >```
