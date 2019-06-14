@@ -44,6 +44,7 @@ We can generate a image about given target number & input numbers(or characters)
 
 ### How to use
 <img src="readme_images/readmeimage1.png" width="400" height="400"> 
+
 > Generate a Image.
 >```
 >  python colorblindness.py
