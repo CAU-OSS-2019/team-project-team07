@@ -50,25 +50,31 @@ We can generate a image about given target number & input numbers(or characters)
 >  python colorblindness.py
 >```
 >```
->  please choose target number (1 ~ 21) : 
+>  target : 
 >```
 >You can choose 1 to 21 for indicators about colorblindness testing.
 >```
->  input first image file location : 
+>  first character : 
 >```
 >You can put 0 ~ 9 or A ~ Z for the main character(number).
 >```
->  (Optional) input second image file location : 
->```
->This option appears when program needs double figures. You can use as same as first image.
->```
->  input overlap image file location : 
+>  first overlap character : 
 >```
 >You can put 0 ~ 9 or A ~ Z for the confusing character(number).
 >```
->  (Optional) input second overlap image file location : 
+>  (Optional) second character : 
+>```
+>This option appears when program needs double figures. You can use as same as first image.
+>```
+>  (Optional) second overlap character : 
 >```
 >This option appears when program needs double figures. You can use as same as overlap image.
+>```
+>  target(지표) 별 유의사항
+>```
+>1. 한 자리 숫자(문자) 사용 : 2, 4, 6, 8, 9표
+>2. 두 자리 숫자(문자) 사용 : 1, 3, 5, 7, 13~18표
+>3. 곡선 경로 사용 : 11, 12, 19, 20, 21표
 
 ## Under development
 1. GUI Programming - It's released now.
