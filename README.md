@@ -72,9 +72,9 @@ We can generate a image about given target number & input numbers(or characters)
 >```
 >  target(지표) 별 유의사항
 >```
->한 자리 숫자(문자) 사용 : 2, 4, 6, 8, 9표
->두 자리 숫자(문자) 사용 : 1, 3, 5, 7, 13~18표
->곡선 경로 사용 : 11, 12, 19, 20, 21표
+>1. 한 자리 숫자(문자) 사용 : 2, 4, 6, 8, 9표
+>2. 두 자리 숫자(문자) 사용 : 1, 3, 5, 7, 13~18표
+>3. 곡선 경로 사용 : 11, 12, 19, 20, 21표
 
 ## Under development
 1. GUI Programming - It's released now.
